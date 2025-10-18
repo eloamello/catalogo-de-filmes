@@ -1,0 +1,32 @@
+<%= form_with(model: comentario) do |form| %>
+  <% if comentario.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(comentario.errors.count, "error") %> prohibited this comentario from being saved:</h2>
+
+      <ul>
+        <% comentario.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :filme_id, style: "display: block" %>
+    <%= form.text_field :filme_id %>
+  </div>
+
+  <div>
+    <%= form.label :nome_visitante, style: "display: block" %>
+    <%= form.text_field :nome_visitante %>
+  </div>
+
+  <div>
+    <%= form.label :conteudo, style: "display: block" %>
+    <%= form.textarea :conteudo %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
