@@ -1,9 +1,6 @@
 class Filme < ApplicationRecord
   has_many :comentarios, dependent: :destroy
+  belongs_to :usuario
 
-  validates :titulo, presence: true
-  validates :sinopse, presence: true
-  validates :ano, presence: true
-  validates :duracao, presence: true
-  validates :diretor, presence: true
+  validates :titulo, :sinopse, :ano, :duracao, :diretor, presence: true
 end

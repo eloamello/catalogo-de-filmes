@@ -1,5 +1,7 @@
 class FilmesController < ApplicationController
   before_action :set_filme, only: %i[ show edit update destroy ]
+  before_action :authenticate_usuario!, except: [:index, :show]
+  before_action :authorize_usuario!, only: [:edit, :update, :destroy]
 
   def index
     @filmes = Filme.all
@@ -16,7 +18,7 @@ class FilmesController < ApplicationController
   end
 
   def create
-    @filme = Filme.new(filme_params)
+    @filme = current_usuario.filmes.build(filme_params)
 
     respond_to do |format|
       if @filme.save
@@ -51,6 +53,10 @@ class FilmesController < ApplicationController
   end
 
   private
+    def authorize_usuario!
+      redirect_to filmes_path, alert: "Você não pode alterar este filme." unless @filme.usuario == current_usuario
+    end
+
     def set_filme
       @filme = Filme.find(params.expect(:id))
     end

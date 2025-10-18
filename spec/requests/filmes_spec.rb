@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe "Filmes", type: :request do
+
   describe "GET /filmes" do
     it "retorna uma lista de filmes" do
-      create_list(:filme, 1)
-      create(:filme, titulo: "A Lista de Schindler", sinopse: "sinopse teste", ano: 1993, duracao: 195, diretor: "Steven Spielberg")
-      create(:filme, titulo: "Um Sonho de Liberdade", sinopse: "sinopse teste", ano: 1995, duracao: 142, diretor: "Frank Darabont")
+      filme = create(:filme)
+      create(:filme, usuario: filme.usuario, titulo: "A Lista de Schindler", sinopse: "sinopse teste", ano: 1993, duracao: 195, diretor: "Steven Spielberg")
+      create(:filme, usuario: filme.usuario, titulo: "Um Sonho de Liberdade", sinopse: "sinopse teste", ano: 1995, duracao: 142, diretor: "Frank Darabont")
 
       get '/filmes'
 
@@ -27,19 +28,33 @@ RSpec.describe "Filmes", type: :request do
 
   describe "POST /filmes" do
     it "cria um filme com sucesso" do
-      post "/filmes", params: { filme: attributes_for(:filme) }
+      sign_in create(:usuario)
+
+      expect {
+        post "/filmes", params: { filme: attributes_for(:filme) }
+      }.to change(Filme, :count).by(1)
+
       expect(response).to have_http_status(:found)
     end
 
     it "retorna erro quando inválido" do
+      sign_in create(:usuario)
       post "/filmes", params: { filme: { titulo: "", sinopse: "", ano: 1998, duracao: 115, diretor: "Frank Darabont" } }
       expect(response).to have_http_status(:unprocessable_content)
+    end
+
+    it "redireciona se usuario deslogado" do
+      post "/filmes", params: { filme: { titulo: "", sinopse: "", ano: 1998, duracao: 115, diretor: "Frank Darabont" } }
+      expect(response).to redirect_to(new_usuario_session_path)
+      expect(response).to have_http_status(:found)
     end
   end
 
   describe "PATCH /filmes/:id" do
     it "atualiza um filme com sucesso" do
       filme = create(:filme)
+      sign_in filme.usuario
+
       patch "/filmes/#{filme.id}", params: {
         filme: {
           titulo: "Novo Título",
@@ -55,6 +70,8 @@ RSpec.describe "Filmes", type: :request do
 
     it "retorna erro quando inválido" do
       filme = create(:filme)
+      sign_in filme.usuario
+
       patch "/filmes/#{filme.id}", params: {
         filme: {
           titulo: "",
@@ -66,13 +83,50 @@ RSpec.describe "Filmes", type: :request do
       }
       expect(response).to have_http_status(:unprocessable_content)
     end
+
+    it "retorna erro se usuario não cadastrou o filme" do
+      filme = create(:filme)
+      sign_in create(:usuario)
+
+      patch "/filmes/#{filme.id}", params: {
+        filme: {
+          titulo: "Novo Título",
+          sinopse: filme.sinopse,
+          ano: filme.ano,
+          duracao: filme.duracao,
+          diretor: filme.diretor
+        }
+      }
+
+      expect(flash[:alert]).to eq("Você não pode alterar este filme.")
+      expect(filme.reload.titulo).to eq("O Poderoso Chefão")
+      expect(response).to have_http_status(:found)
+    end
   end
 
   describe "DELETE /filmes/:id" do
     it "remove um filme com sucesso" do
       filme = create(:filme)
+      sign_in filme.usuario
+
       delete "/filmes/#{filme.id}"
       expect(response).to have_http_status(:see_other)
+    end
+
+    it "redireciona quando deslogado" do
+      filme = create(:filme)
+      delete "/filmes/#{filme.id}"
+      expect(response).to redirect_to(new_usuario_session_path)
+      expect(response).to have_http_status(:found)
+    end
+
+    it "retorna erro se usuario não cadastrou o filme" do
+      filme = create(:filme)
+      sign_in create(:usuario)
+      delete "/filmes/#{filme.id}"
+      expect(flash[:alert]).to eq("Você não pode alterar este filme.")
+      expect(filme.reload.titulo).to eq("O Poderoso Chefão")
+      expect(response).to have_http_status(:found)
     end
   end
 end
