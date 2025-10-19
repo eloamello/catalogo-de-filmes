@@ -4,7 +4,7 @@ class FilmesController < ApplicationController
   before_action :authorize_usuario!, only: [:edit, :update, :destroy]
 
   def index
-    @filmes = Filme.all
+    @filmes = Filme.order(ano: :desc, titulo: :asc)
   end
 
   def show

@@ -4,7 +4,7 @@ class ComentariosController < ApplicationController
   before_action :authorize_usuario!, only: [ :edit, :update, :destroy ]
 
   def index
-    @comentarios = Comentario.all
+    @comentarios = Comentario.order(created_at: :desc)
   end
 
   def show
@@ -63,6 +63,6 @@ class ComentariosController < ApplicationController
     end
 
     def comentario_params
-      params.require(:comentario).permit(:filme_id, :nome_visitante, :conteudo)
+      params.require(:comentario).permit(:nome_visitante, :conteudo)
     end
 end
