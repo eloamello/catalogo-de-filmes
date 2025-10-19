@@ -62,6 +62,6 @@ class FilmesController < ApplicationController
     end
 
     def filme_params
-      params.expect(filme: [ :titulo, :sinopse, :ano, :duracao, :diretor ])
+      params.require(:filme).permit(:titulo, :sinopse, :ano, :duracao, :diretor, :poster)
     end
 end
