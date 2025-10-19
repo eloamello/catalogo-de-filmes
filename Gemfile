@@ -44,3 +44,5 @@ gem "devise", "~> 4.9"
 gem "bootstrap", "~> 5.3"
 
 gem "dartsass-rails", "~> 0.5.1"
+
+gem "will_paginate", "~> 4.0"

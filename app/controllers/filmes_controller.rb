@@ -4,7 +4,7 @@ class FilmesController < ApplicationController
   before_action :authorize_usuario!, only: [:edit, :update, :destroy]
 
   def index
-    @filmes = Filme.order(ano: :desc, titulo: :asc)
+    @filmes = Filme.order(ano: :desc, titulo: :asc).paginate(page: params[:page], per_page: 6)
   end
 
   def show

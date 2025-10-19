@@ -11,6 +11,7 @@
       <%= link_to "Show this filme", filme %>
     </p>
   <% end %>
+  <%= will_paginate @filmes %>
 </div>
 
 <%= link_to "New filme", new_filme_path %>
