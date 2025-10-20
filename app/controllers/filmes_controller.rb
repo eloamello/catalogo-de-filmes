@@ -59,7 +59,7 @@ class FilmesController < ApplicationController
     @importacao_filme = current_usuario.importacao_filmes.build(arquivo: arquivo)
     if @importacao_filme.save
       ImportarFilmesJob.perform_async(@importacao_filme.id)
-      redirect_to filmes_path, notice: "Importação iniciada!"
+      redirect_to importacao_filmes_path, notice: "Importação iniciada!"
     else
       format.html { render :edit, status: :unprocessable_entity }
       format.json { render json: @importacao_filme.errors, status: :unprocessable_entity }

@@ -20,7 +20,9 @@ class ImportarFilmesJob
       importacao_filme.update(status: :concluido)
       importacao_filme.arquivo.purge_later
 
-      #TODO envio de email quando finaliza
+      ImportacaoFilmeMailer.with(usuario: usuario, importacao_filme: importacao_filme)
+                           .importacao_finalizada
+                           .deliver_later
     rescue StandardError => e
       importacao_filme.update(status: :erro)
       Rails.logger.error e
