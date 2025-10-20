@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   devise_for :usuarios
   root "filmes#index"
-  resources :comentarios
-  resources :filmes
+
+  resources :filmes do
+    resources :comentarios, only: [:create, :destroy]
+
+    collection do
+      post :importar
+    end
+  end
 end

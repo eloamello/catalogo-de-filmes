@@ -18,12 +18,13 @@ class ComentariosController < ApplicationController
   end
 
   def create
-    @comentario = Comentario.new(comentario_params)
+    @filme = Filme.find(params[:filme_id])
+    @comentario = @filme.comentarios.new(comentario_params)
     @comentario.usuario = current_usuario if usuario_signed_in?
 
     respond_to do |format|
       if @comentario.save
-        format.html { redirect_to @comentario, notice: "Comentario was successfully created." }
+        format.html { redirect_to @filme, notice: "Comentario was successfully created." }
         format.json { render :show, status: :created, location: @comentario }
       else
         format.html { render :new, status: :unprocessable_entity }

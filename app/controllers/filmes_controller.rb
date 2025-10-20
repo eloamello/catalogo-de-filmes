@@ -52,6 +52,20 @@ class FilmesController < ApplicationController
     end
   end
 
+  def importar
+    arquivo = params[:arquivo]
+    return redirect_to filmes_path, alert: "Nenhum arquivo enviado." if arquivo.nil?
+
+    @importacao_filme = current_usuario.importacao_filmes.build(arquivo: arquivo)
+    if @importacao_filme.save
+      ImportarFilmesJob.perform_async(@importacao_filme.id)
+      redirect_to filmes_path, notice: "Importação iniciada!"
+    else
+      format.html { render :edit, status: :unprocessable_entity }
+      format.json { render json: @importacao_filme.errors, status: :unprocessable_entity }
+    end
+  end
+
   private
     def authorize_usuario!
       redirect_to filmes_path, alert: "Você não pode alterar este filme." unless @filme.usuario == current_usuario
