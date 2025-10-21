@@ -7,14 +7,14 @@ Rails.application.routes.draw do
   resources :filmes do
     resources :comentarios, only: [ :create, :destroy ]
 
-    resources :importacao_filmes, only: [ :index, :create ]
-
-    resources :categorias, only: [ :index, :new, :create ]
-
     collection do
       post :importar
     end
   end
+
+  resources :importacao_filmes, only: [ :index, :create ]
+
+  resources :categorias, only: [ :index, :new, :create ]
 
   authenticate :usuario, lambda { |u| u.administrador? } do
     mount Sidekiq::Web => "/sidekiq"
