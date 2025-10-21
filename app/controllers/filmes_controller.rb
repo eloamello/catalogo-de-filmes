@@ -1,10 +1,24 @@
 class FilmesController < ApplicationController
   before_action :set_filme, only: %i[ show edit update destroy ]
-  before_action :authenticate_usuario!, except: [:index, :show]
-  before_action :authorize_usuario!, only: [:edit, :update, :destroy]
+  before_action :authenticate_usuario!, except: [ :index, :show ]
+  before_action :authorize_usuario!, only: [ :edit, :update, :destroy ]
 
   def index
-    @filmes = Filme.order(ano: :desc, titulo: :asc).paginate(page: params[:page], per_page: 6)
+    filmes = Filme.all
+
+    categoria_ids = Array(params.dig(:q, :categorias_id_in)).reject(&:blank?)
+    filmes = filmes.por_categorias(categoria_ids) if categoria_ids.any?
+
+    q_params = params[:q] ? params[:q].except(:categorias_id_in) : {}
+    @q = filmes.ransack(q_params)
+
+    @filmes = @q.result(distinct: true)
+                .order(ano: :desc, titulo: :asc)
+                .paginate(page: params[:page], per_page: 6)
+
+    @categorias = Categoria.joins(:filmes).distinct.select(:id, :nome).order(:nome)
+    @diretores  = Filme.distinct.pluck(:diretor)
+    @anos       = Filme.distinct.pluck(:ano)
   end
 
   def show
@@ -23,10 +37,8 @@ class FilmesController < ApplicationController
     respond_to do |format|
       if @filme.save
         format.html { redirect_to @filme, notice: "Filme was successfully created." }
-        format.json { render :show, status: :created, location: @filme }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @filme.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -35,10 +47,8 @@ class FilmesController < ApplicationController
     respond_to do |format|
       if @filme.update(filme_params)
         format.html { redirect_to @filme, notice: "Filme was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @filme }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @filme.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -48,7 +58,6 @@ class FilmesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to filmes_path, notice: "Filme was successfully destroyed.", status: :see_other }
-      format.json { head :no_content }
     end
   end
 
@@ -61,8 +70,7 @@ class FilmesController < ApplicationController
       ImportarFilmesJob.perform_async(@importacao_filme.id)
       redirect_to importacao_filmes_path, notice: "Importação iniciada!"
     else
-      format.html { render :edit, status: :unprocessable_entity }
-      format.json { render json: @importacao_filme.errors, status: :unprocessable_entity }
+      redirect_to filmes_path, alert: @importacao_filme.errors.full_messages.join(", ")
     end
   end
 
