@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_20_015839) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_20_193722) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -40,6 +40,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_015839) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "categorias", force: :cascade do |t|
+    t.string "nome"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categorias_filmes", id: false, force: :cascade do |t|
+    t.bigint "categoria_id", null: false
+    t.bigint "filme_id", null: false
+    t.index ["categoria_id", "filme_id"], name: "index_categorias_filmes_on_categoria_id_and_filme_id"
+    t.index ["filme_id", "categoria_id"], name: "index_categorias_filmes_on_filme_id_and_categoria_id"
   end
 
   create_table "comentarios", force: :cascade do |t|

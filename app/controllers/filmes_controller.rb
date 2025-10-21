@@ -76,6 +76,6 @@ class FilmesController < ApplicationController
     end
 
     def filme_params
-      params.require(:filme).permit(:titulo, :sinopse, :ano, :duracao, :diretor, :poster)
+      params.require(:filme).permit(:titulo, :sinopse, :ano, :duracao, :diretor, :poster, categoria_ids: [])
     end
 end

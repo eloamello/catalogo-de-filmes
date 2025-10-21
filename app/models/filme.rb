@@ -1,5 +1,6 @@
 class Filme < ApplicationRecord
   has_one_attached :poster
+  has_and_belongs_to_many :categorias
   has_many :comentarios, -> { order(created_at: :desc) }, dependent: :destroy
   belongs_to :usuario
 
