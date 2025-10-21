@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :importacao_filmes, only: [ :index, :show ]
+  authenticate :usuario, lambda { |u| u.administrador? } do
+    mount Sidekiq::Web => "/sidekiq"
+  end
 end
