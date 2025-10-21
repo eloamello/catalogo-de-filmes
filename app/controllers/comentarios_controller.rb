@@ -25,10 +25,8 @@ class ComentariosController < ApplicationController
     respond_to do |format|
       if @comentario.save
         format.html { redirect_to @filme, notice: "Comentario was successfully created." }
-        format.json { render :show, status: :created, location: @comentario }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @comentario.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -37,10 +35,8 @@ class ComentariosController < ApplicationController
     respond_to do |format|
       if @comentario.update(comentario_params)
         format.html { redirect_to @comentario, notice: "Comentario was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @comentario }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @comentario.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -50,7 +46,6 @@ class ComentariosController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to comentarios_path, notice: "Comentario was successfully destroyed.", status: :see_other }
-      format.json { head :no_content }
     end
   end
 
