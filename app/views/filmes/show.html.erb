@@ -1,10 +1,64 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, @filme.titulo %>
 
-<%= render @filme %>
+<div class="container my-4">
 
-<div>
-  <%= link_to "Edit this filme", edit_filme_path(@filme) %> |
-  <%= link_to "Back to filmes", filmes_path %>
+  <div class="row g-4">
+    <div class="col-md-4">
+      <% if @filme.poster.attached? %>
+        <%= image_tag @filme.poster, class: "card-img-top", alt: @filme.titulo %>
+      <% else %>
+        <%= image_tag "https://placehold.co/300x400", class: "card-img-top", alt: @filme.titulo %>
+      <% end %>
+    </div>
 
-  <%= button_to "Destroy this filme", @filme, method: :delete %>
+    <div class="col-md-8">
+      <h1><%= @filme.titulo %> (<%= @filme.ano %>)</h1>
+      <p><strong>Diretor:</strong> <%= @filme.diretor %></p>
+      <p><strong>Duração:</strong> <%= @filme.duracao %> min</p>
+      <p><%= @filme.sinopse %></p>
+      <% if @filme.categorias.any? %>
+        <p><strong>Categorias:</strong>
+          <%= @filme.categorias.map(&:nome).join(", ") %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+
+  <div>
+    <% if usuario_signed_in? && @filme.usuario == current_usuario %>
+      <%= link_to "Editar filme", edit_filme_path(@filme), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <hr class="my-4">
+
+  <div class="mb-4">
+    <h4>Deixe seu comentário</h4>
+    <%= form_with(model: [@filme, Comentario.new], local: true) do |form| %>
+      <% if !usuario_signed_in? %>
+        <div class="mb-2">
+          <%= form.label :nome_visitante, "Nome" %>
+          <%= form.text_field :nome_visitante, class: "form-control", placeholder: "Digite seu nome" %>
+        </div>
+      <% end %>
+
+      <div class="mb-2">
+        <%= form.label :conteudo, "Comentário" %>
+        <%= form.text_area :conteudo, class: "form-control", rows: 3, placeholder: "Escreva seu comentário" %>
+      </div>
+
+      <%= form.submit "Postar comentário", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <div>
+    <h4>Comentários</h4>
+    <% @filme.comentarios.each do |comentario| %>
+      <div class="border p-3 mb-2 rounded">
+        <p class="mb-1"><strong><%= comentario.usuario&.nome || comentario.nome_visitante %></strong> disse:</p>
+        <p class="mb-0"><%= comentario.conteudo %></p>
+      </div>
+    <% end %>
+  </div>
+
 </div>

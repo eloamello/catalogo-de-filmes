@@ -1,3 +1,52 @@
 // Sassy
-@import "bootstrap";
-@import "toastify";
+@use "bootstrap";
+@use "toastify";
+@use "tom-select";
+
+body {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.navbar-brand .logo-navbar{
+  max-height: 80px;
+  height: auto;
+  width: auto;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-top: 1rem;
+}
+
+.pagination li, .pagination a, .pagination span, .pagination em {
+  display: block;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  color: #0d6efd;
+  font-weight: 500;
+}
+
+.pagination em.current {
+  background-color: #0d6efd;
+  color: white;
+  border-color: #0d6efd;
+  pointer-events: none;
+}
+
+.pagination a:hover {
+  background-color: #e9ecef;
+}
+
+.pagination .previous_page.disabled,
+.pagination .next_page.disabled {
+  color: #6c757d;
+  pointer-events: none;
+  background-color: #f8f9fa;
+}

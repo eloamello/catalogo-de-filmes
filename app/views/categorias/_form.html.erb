@@ -1,0 +1,10 @@
+<%= form_with(model: categoria) do |form| %>
+  <div class="mb-3">
+    <%= form.label :nome, "Nome da Categoria" %>
+    <%= form.text_field :nome, class: "form-control", placeholder: "Digite o nome da categoria" %>
+  </div>
+  <div>
+    <%= form.submit "Salvar Categoria", class: "btn btn-primary" %>
+    <%= link_to "Voltar para categorias", categorias_path, class: "btn btn-secondary ms-2" %>
+  </div>
+<% end %>

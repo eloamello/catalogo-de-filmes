@@ -1,14 +1,15 @@
-# Pin npm packages by running ./bin/importmap
-
 pin "application"
-
 pin "@hotwired/turbo-rails", to: "turbo.min.js"
 pin "@hotwired/stimulus", to: "stimulus.min.js"
 pin "@hotwired/stimulus-loading", to: "stimulus-loading.js"
 pin_all_from "app/javascript/controllers", under: "controllers"
+pin_all_from "app/javascript/helpers", under: "controllers"
 
-pin "@popperjs/core", to: "https://ga.jspm.io/npm:@popperjs/core@2.11.8/lib/index.js"
-pin "bootstrap", to: "https://ga.jspm.io/npm:bootstrap@5.3.2/dist/js/bootstrap.esm.js"
-
-pin "toastify-js", to: "https://cdn.jsdelivr.net/npm/toastify-js@1.12.0/+esm"
 pin "alertas"
+
+pin "tom-select" # @2.4.3
+pin "@orchidjs/sifter", to: "@orchidjs--sifter.js" # @1.1.0
+pin "@orchidjs/unicode-variants", to: "@orchidjs--unicode-variants.js" # @1.1.2
+pin "bootstrap", to: "bootstrap.min.js", preload: true
+pin "@popperjs/core", to: "popper.js", preload: true
+pin "toastify-js" # @1.12.0

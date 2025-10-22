@@ -1,0 +1,22 @@
+<div class="modal fade" id="importarModal" tabindex="-1" aria-labelledby="importarModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="importarModalLabel">Importar Filmes</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with url: importar_filmes_path, local: true, html: { multipart: true } do |f| %>
+          <div class="mb-3">
+            <%= f.label :arquivo, "Escolha o CSV", class: "form-label" %>
+            <%= f.file_field :arquivo, class: "form-control", accept: ".csv" %>
+          </div>
+          <div class="modal-footer">
+            <%= f.submit "Importar", class: "btn btn-primary" %>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
