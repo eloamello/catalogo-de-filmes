@@ -1,6 +1,6 @@
 require "csv"
 
-class ImportadorCsv
+class ImportadorFilmeCsv
   def self.ler_e_validar(arquivo_attached)
     csv_text = arquivo_attached.download.force_encoding("utf-8")
 

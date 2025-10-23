@@ -5,7 +5,7 @@ class ImportarFilmesJob
     importacao_filme = ImportacaoFilme.find(importacao_filme_id)
     usuario = importacao_filme.usuario
     begin
-      filmes_array = ImportadorCsv.ler_e_validar(importacao_filme.arquivo)
+      filmes_array = ImportadorFilmeCsv.ler_e_validar(importacao_filme.arquivo)
 
       filmes_array.each do |linha|
         usuario.filmes.create!(
