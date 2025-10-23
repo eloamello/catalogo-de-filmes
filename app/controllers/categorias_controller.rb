@@ -1,4 +1,5 @@
 class CategoriasController < ApplicationController
+  before_action :set_categoria, only: [:edit, :update, :destroy]
   before_action :authenticate_usuario!
 
   def index
@@ -12,11 +13,32 @@ class CategoriasController < ApplicationController
     @categoria = Categoria.new
   end
 
+  def edit
+  end
+
   def create
     @categoria = Categoria.find_or_create_by(nome: categoria_params[:nome].strip)
 
     respond_to do |format|
       format.html { redirect_to categorias_path }
+    end
+  end
+
+  def update
+    respond_to do |format|
+      if @categoria.update(categoria_params)
+        format.html { redirect_to categorias_path, notice: "Categoria was successfully updated.", status: :see_other }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @categoria.destroy!
+
+    respond_to do |format|
+      format.html { redirect_to categorias_path, notice: "Categoria was successfully destroyed.", status: :see_other }
     end
   end
 

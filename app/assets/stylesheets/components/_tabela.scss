@@ -1,0 +1,50 @@
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: $raio-extra-grande;
+  box-shadow: $sombra-pequena;
+  overflow: hidden;
+  font-size: $texto-medio;
+
+  thead {
+    background: $fundo-claro;
+
+    th {
+      text-align: left;
+      padding: 0.75rem 1rem;
+      font-weight: 600;
+      color: $texto-escuro;
+      border-bottom: 2px solid $cor-borda;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid $cor-borda;
+
+      &:hover {
+        background: rgba(102, 126, 234, 0.05);
+      }
+
+      td {
+        padding: 0.75rem 1rem;
+        color: $texto-escuro;
+      }
+    }
+
+    tr:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__acoes {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-start;
+  }
+
+  &--resposive {
+    overflow-x: auto;
+  }
+}

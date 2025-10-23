@@ -16,7 +16,7 @@ class FilmeIaService
   def prompt
     <<~PROMPT
       Quero os dados do filme com título exato '#{@titulo}'.
-      Responda APENAS O JSON com as chaves: titulo, sinopse, ano, duracao (em minutos) e diretor, 
+      Responda APENAS O JSON com as chaves: titulo, sinopse, ano, duracao (em minutos) e diretor,
       sem formatar a resposta em markdown. Eu utilizarei a resposta para parsear o JSON.
     PROMPT
   end

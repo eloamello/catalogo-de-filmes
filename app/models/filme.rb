@@ -5,8 +5,6 @@ class Filme < ApplicationRecord
   has_many :comentarios, -> { order(created_at: :desc) }, dependent: :destroy
   belongs_to :usuario
 
-  accepts_nested_attributes_for :tags, allow_destroy: true
-
   validates :titulo, :sinopse, :duracao, :diretor, presence: true
   validates :ano, presence: true, numericality: {
     only_integer: true,

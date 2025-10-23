@@ -53,8 +53,14 @@ class FilmesController < ApplicationController
   end
 
   def update
+    update_params = filme_params.except(:tags)
+
+    @filme.tags = filme_params[:tags].split(" ").map(&:strip).reject(&:blank?).each do |tag_nome|
+      @filme.tags.build(nome: tag_nome)
+    end
+
     respond_to do |format|
-      if @filme.update(filme_params)
+      if @filme.update(update_params)
         format.html { redirect_to @filme, notice: "Filme was successfully updated.", status: :see_other }
       else
         format.html { render :edit, status: :unprocessable_entity }

@@ -1,0 +1,30 @@
+<% content_for :title, "Desbloquear conta" %>
+
+<div class="pagina-autenticacao">
+  <div class="formulario-auth">
+    <div class="formulario-auth__cabecalho">
+      <i class="bi bi-unlock"></i>
+      <h1>Desbloquear conta</h1>
+      <p>Digite seu e-mail para receber instruções de desbloqueio</p>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "usuarios/shared/error_messages", resource: resource %>
+
+      <div class="formulario-auth__grupo">
+        <%= f.label :email, "E-mail", class: "formulario-auth__label" %>
+        <%= f.email_field :email,
+                          autofocus: true,
+                          autocomplete: "email",
+                          class: "formulario-auth__input",
+                          placeholder: "seu@email.com" %>
+      </div>
+
+      <%= f.submit "Enviar instruções", class: "botao botao--primario botao--completo botao--grande" %>
+    <% end %>
+
+    <div class="formulario-auth__rodape">
+      <%= render "usuarios/shared/links" %>
+    </div>
+  </div>
+</div>

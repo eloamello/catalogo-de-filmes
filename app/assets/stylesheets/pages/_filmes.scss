@@ -1,0 +1,29 @@
+.cards-filmes .card .placeholder-titulo {
+  height: 400px;
+  background-color: $fundo-claro;
+  border-top-left-radius: $raio-extra-grande;
+  border-top-right-radius: $raio-extra-grande;
+  text-align: center;
+  padding: 1rem;
+}
+
+.cards-filmes .card .placeholder-text {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: $texto-escuro;
+}
+
+.filme-show {
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .comentarios {
+    .comentario-card {
+      background-color: white;
+      box-shadow: $sombra-pequena;
+    }
+  }
+}

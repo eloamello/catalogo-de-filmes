@@ -1,0 +1,35 @@
+.paginacao {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.paginacao li, .paginacao a, .paginacao span, .paginacao em {
+  display: block;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  color: $cor-primaria-escura;
+  font-weight: 500;
+}
+
+.paginacao em.current {
+  background-color: $cor-primaria-escura;
+  color: white;
+  border-color: $cor-primaria-escura;
+  pointer-events: none;
+}
+
+.paginacao a:hover {
+  background-color: #e9ecef;
+}
+
+.paginacao .previous_page.disabled,
+.paginacao .next_page.disabled {
+  color: #6c757d;
+  pointer-events: none;
+  background-color: #f8f9fa;
+}

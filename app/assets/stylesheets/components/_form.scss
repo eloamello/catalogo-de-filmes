@@ -1,0 +1,104 @@
+.formulario {
+  max-width: 600px;
+  margin: 0 auto;
+
+  &__container {
+    background: white;
+    border-radius: $raio-extra-grande;
+    padding: 3rem;
+    box-shadow: $sombra-grande;
+    border: 1px solid $cor-borda;
+  }
+
+  &__titulo {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: $texto-escuro;
+    margin-bottom: 2rem;
+    background: $cor-primaria-escura;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  &__grupo {
+    margin-bottom: 1.5rem;
+  }
+
+  &__label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $texto-escuro;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    color: $texto-escuro;
+    background: $fundo-claro;
+    border: 2px solid $cor-borda;
+    border-radius: $raio-medio;
+    outline: none;
+
+    &::placeholder {
+      color: $texto-claro;
+    }
+
+    &:focus {
+      background: white;
+      border-color: $cor-primaria;}
+
+    &:hover:not(:focus) {
+      border-color: darken($cor-borda, 10%);
+    }
+  }
+
+  &__acoes {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  &__botao {
+    flex: 1;
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: $raio-medio;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    &--primario {
+      background: $cor-primaria-escura;
+      color: white;
+      box-shadow: $sombra-media;
+
+      &:hover {
+        box-shadow: $sombra-grande;
+        background: $cor-primaria;
+      }
+    }
+
+    &--secundario {
+      background: white;
+      color: $texto-escuro;
+      border: 2px solid $cor-borda;
+
+      &:hover {
+        background: $fundo-claro;
+        border-color: $texto-claro;
+      }
+    }
+  }
+}

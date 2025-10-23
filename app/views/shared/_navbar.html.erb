@@ -1,0 +1,69 @@
+<header class="navbar-custom">
+  <div class="navbar-custom__container">
+    <%= link_to root_path, class: "navbar-custom__logo" do %>
+      <i class="bi bi-film"></i>
+      <span>Catálogo de Filmes</span>
+    <% end %>
+
+    <nav class="navbar-custom__menu">
+      <div class="dropdown">
+        <button class="navbar-custom__link dropdown-toggle" type="button" id="dropdownFilmes" data-bs-toggle="dropdown" aria-expanded="false">
+          Filmes
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownFilmes">
+          <li><%= link_to "Ver todos", filmes_path, class: "dropdown-item" %></li>
+          <% if usuario_signed_in? %>
+            <li><%= link_to "Novo Filme", new_filme_path, class: "dropdown-item" %></li>
+            <li><%= link_to "Importações", importacao_filmes_path, class: "dropdown-item" %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% if usuario_signed_in? %>
+        <div class="dropdown">
+          <button class="navbar-custom__link dropdown-toggle" type="button" id="dropdownCategorias" data-bs-toggle="dropdown" aria-expanded="false">
+            Categorias
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownCategorias">
+            <li><%= link_to "Ver todas", categorias_path, class: "dropdown-item" %></li>
+            <li><%= link_to "Nova Categoria", new_categoria_path, class: "dropdown-item" %></li>
+          </ul>
+        </div>
+      <% end %>
+    </nav>
+
+    <div class="navbar-custom__acoes">
+      <% if usuario_signed_in? %>
+        <div class="navbar-custom__usuario">
+          <button class="navbar-custom__usuario-btn" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle"></i>
+            <span><%= current_usuario.nome %></span>
+            <i class="bi bi-chevron-down"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><%= link_to "Perfil", edit_usuario_registration_path, class: "dropdown-item" %></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><%= button_to "Sair", destroy_usuario_session_path, method: :delete, class: "dropdown-item" %></li>
+          </ul>
+        </div>
+      <% else %>
+        <%= link_to "Entrar", new_usuario_session_path, class: "botao botao--secundario botao--pequeno" %>
+        <%= link_to "Registrar", new_usuario_registration_path, class: "botao botao--primario botao--pequeno" %>
+      <% end %>
+    </div>
+
+    <button class="navbar-custom__toggle" data-bs-toggle="collapse" data-bs-target="#navbarMobile">
+      <i class="bi bi-list"></i>
+    </button>
+  </div>
+
+  <div class="collapse navbar-custom__mobile" id="navbarMobile">
+    <%= link_to "Filmes", filmes_path, class: "navbar-custom__mobile-link" %>
+    <%= link_to "Categorias", categorias_path, class: "navbar-custom__mobile-link" %>
+    <% unless usuario_signed_in? %>
+      <div class="navbar-custom__mobile-acoes">
+        <%= link_to "Entrar", new_usuario_session_path, class: "botao botao--secundario botao--completo" %>
+        <%= link_to "Registrar", new_usuario_registration_path, class: "botao botao--primario botao--completo" %>
+      </div>
+    <% end %>
+  </div>
+</header>

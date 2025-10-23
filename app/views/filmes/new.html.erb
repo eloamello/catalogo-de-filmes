@@ -1,11 +1,15 @@
-<% content_for :title, "New filme" %>
+<% content_for :title, "Novo filme" %>
 
-<h1>New filme</h1>
+<div class="container my-5">
+  <div>
+    <button type="button" class="botao botao--primario botao--completo" data-bs-toggle="modal" data-bs-target="#importarModal">
+      Importar CSV
+    </button>
+  </div>
 
-<%= render "form", filme: @filme %>
+  <br>
 
-<br>
+  <%= render "form", filme: @filme %>
 
-<div>
-  <%= link_to "Back to filmes", filmes_path %>
+  <%= render "modal_importar_csv" %>
 </div>

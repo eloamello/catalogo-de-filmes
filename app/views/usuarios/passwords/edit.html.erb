@@ -1,0 +1,44 @@
+<% content_for :title, "Alterar senha" %>
+
+<div class="pagina-autenticacao">
+  <div class="formulario-auth">
+    <div class="formulario-auth__cabecalho">
+      <i class="bi bi-key"></i>
+      <h1>Alterar senha</h1>
+      <p>Escolha uma nova senha para sua conta</p>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "usuarios/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :reset_password_token %>
+
+      <div class="formulario-auth__grupo">
+        <%= f.label :password, "Nova senha", class: "formulario-auth__label" %>
+        <% if @minimum_password_length %>
+          <small class="text-muted">
+            (<%= @minimum_password_length %> caracteres no mínimo)
+          </small>
+        <% end %>
+        <%= f.password_field :password,
+                             autofocus: true,
+                             autocomplete: "new-password",
+                             class: "formulario-auth__input",
+                             placeholder: "••••••••" %>
+      </div>
+
+      <div class="formulario-auth__grupo">
+        <%= f.label :password_confirmation, "Confirmar nova senha", class: "formulario-auth__label" %>
+        <%= f.password_field :password_confirmation,
+                             autocomplete: "new-password",
+                             class: "formulario-auth__input",
+                             placeholder: "••••••••" %>
+      </div>
+
+      <%= f.submit "Alterar senha", class: "botao botao--primario botao--completo botao--grande" %>
+    <% end %>
+
+    <div class="formulario-auth__rodape">
+      <%= render "usuarios/shared/links" %>
+    </div>
+  </div>
+</div>

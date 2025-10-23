@@ -1,17 +1,103 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Filmes" %>
 
-<h1>Filmes</h1>
+<div class="filmes-page">
+  <div class="mb-3 d-flex gap-2">
+    <%= link_to "Novo Filme", new_filme_path, class: "botao botao--sucesso" %>
+  </div>
 
-<div id="filmes">
-  <% @filmes.each do |filme| %>
-    <%= render filme %>
-    <p>
-      <%= link_to "Show this filme", filme %>
-    </p>
-  <% end %>
-  <%= will_paginate @filmes %>
+  <div class="busca mb-4">
+    <%= search_form_for @q, url: filmes_path, method: :get, local: true, class: "row g-2" do |f| %>
+      <div class="col-md-4">
+        <%= f.text_field :titulo_cont, placeholder: "Buscar por título", class: "form-control" %>
+      </div>
+      <div class="col-md-4">
+        <%= f.text_field :diretor_cont, placeholder: "Buscar por diretor", class: "form-control" %>
+      </div>
+      <div class="col-md-2">
+        <%= f.number_field :ano_eq, placeholder: "Buscar por ano", class: "form-control" %>
+      </div>
+      <div class="col-md-2">
+        <%= f.submit "Buscar", class: "botao botao--primario botao--completo" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 filtros">
+      <%= search_form_for @q, url: filmes_path, method: :get, local: true do |f| %>
+        <div class="accordion" id="filtrosAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingCategorias">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCategorias" aria-expanded="false" aria-controls="collapseCategorias">
+                Categorias
+              </button>
+            </h2>
+            <div id="collapseCategorias" class="accordion-collapse collapse" aria-labelledby="headingCategorias" data-bs-parent="#filtrosAccordion">
+              <div class="accordion-body">
+                <% @categorias.each do |c| %>
+                  <div class="form-check d-flex justify-content-between">
+                    <%= check_box_tag "q[categorias_id_in][]", c.id, params.dig(:q, :categorias_id_in)&.include?(c.id.to_s), class: "form-check-input", id: "cat_#{c.id}" %>
+                    <%= label_tag "cat_#{c.id}", c.nome, class: "form-check-label flex-grow-1" %>
+                    <span class="text-muted ms-2"><%= c.filmes.count %></span>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingDiretores">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDiretores" aria-expanded="false" aria-controls="collapseDiretores">
+                Diretores
+              </button>
+            </h2>
+            <div id="collapseDiretores" class="accordion-collapse collapse" aria-labelledby="headingDiretores" data-bs-parent="#filtrosAccordion">
+              <div class="accordion-body">
+                <% @diretores.each do |d| %>
+                  <div class="form-check d-flex justify-content-between">
+                    <%= check_box_tag "q[diretor_in][]", d, params.dig(:q, :diretor_in)&.include?(d), class: "form-check-input", id: "dir_#{d.parameterize}" %>
+                    <%= label_tag "dir_#{d.parameterize}", d, class: "form-check-label flex-grow-1" %>
+                    <span class="text-muted ms-2"><%= Filme.where(diretor: d).count %></span>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingAnos">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAnos" aria-expanded="false" aria-controls="collapseAnos">
+                Anos
+              </button>
+            </h2>
+            <div id="collapseAnos" class="accordion-collapse collapse" aria-labelledby="headingAnos" data-bs-parent="#filtrosAccordion">
+              <div class="accordion-body">
+                <% @anos.each do |a| %>
+                  <div class="form-check d-flex justify-content-between">
+                    <%= check_box_tag "q[ano_in][]", a, params.dig(:q, :ano_in)&.include?(a.to_s), class: "form-check-input", id: "ano_#{a}" %>
+                    <%= label_tag "ano_#{a}", a, class: "form-check-label flex-grow-1" %>
+                    <span class="text-muted ms-2"><%= Filme.where(ano: a).count %></span>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <%= submit_tag "Filtrar", class: "botao botao--primario botao--completo mt-3" %>
+      <% end %>
+    </div>
+
+    <div class="col-md-9 cards-filmes">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <% @filmes.each do |filme| %>
+          <%= render filme %>
+        <% end %>
+      </div>
+
+      <div class="d-flex justify-content-center mt-4">
+        <%= will_paginate @filmes, class: "paginacao" %>
+      </div>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New filme", new_filme_path %>
