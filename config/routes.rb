@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
     collection do
       post :importar
+      post :buscar_por_ia
     end
   end
 

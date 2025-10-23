@@ -83,6 +83,20 @@ class FilmesController < ApplicationController
     end
   end
 
+  def buscar_por_ia
+    titulo = params[:titulo]
+
+    dados = FilmeIaService.new(titulo).buscar_dados
+
+    @filme = dados ? Filme.new(dados) : Filme.new
+
+    render turbo_stream: turbo_stream.update(
+      "form_filme",
+      partial: "filmes/form",
+      locals: { filme: @filme }
+    )
+  end
+
   private
     def authorize_usuario!
       redirect_to filmes_path, alert: "Você não pode alterar este filme." unless @filme.usuario == current_usuario

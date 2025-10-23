@@ -58,3 +58,5 @@ gem "sidekiq", "~> 8.0"
 gem "csv", "~> 3.3"
 
 gem "ransack", "~> 4.4"
+
+gem "ruby_llm", "~> 1.8"
