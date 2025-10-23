@@ -1,8 +1,7 @@
 import "@hotwired/turbo-rails"
-
-import "@popperjs/core"
-import "bootstrap"
-
 import "controllers"
 
-import "alertas"
+import "bootstrap"
+import "@popperjs/core"
+import "helpers/alertas"
+import "helpers/tom_select"
