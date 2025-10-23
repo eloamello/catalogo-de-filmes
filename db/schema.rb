@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_20_193722) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_22_143024) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -86,6 +86,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_193722) do
     t.index ["usuario_id"], name: "index_importacao_filmes_on_usuario_id"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "nome"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "filme_id", null: false
+    t.index ["filme_id"], name: "index_tags_on_filme_id"
+  end
+
   create_table "usuarios", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -106,4 +114,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_20_193722) do
   add_foreign_key "comentarios", "usuarios"
   add_foreign_key "filmes", "usuarios"
   add_foreign_key "importacao_filmes", "usuarios"
+  add_foreign_key "tags", "filmes"
 end

@@ -1,8 +1,11 @@
 class Filme < ApplicationRecord
   has_one_attached :poster
   has_and_belongs_to_many :categorias
+  has_many :tags, dependent: :destroy
   has_many :comentarios, -> { order(created_at: :desc) }, dependent: :destroy
   belongs_to :usuario
+
+  accepts_nested_attributes_for :tags, allow_destroy: true
 
   validates :titulo, :sinopse, :duracao, :diretor, presence: true
   validates :ano, presence: true, numericality: {
@@ -16,9 +19,9 @@ class Filme < ApplicationRecord
     joins(:categorias).where(categorias: { id: categoria_ids }).distinct
   }
   def self.ransackable_associations(auth_object = nil)
-    ["categorias"]
+    [ "categorias" ]
   end
   def self.ransackable_attributes(auth_object = nil)
-    ["ano", "diretor", "titulo"]
+    [ "ano", "diretor", "titulo" ]
   end
 end

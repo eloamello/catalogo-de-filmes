@@ -32,7 +32,16 @@ class FilmesController < ApplicationController
   end
 
   def create
-    @filme = current_usuario.filmes.build(filme_params)
+    @filme = current_usuario.filmes.build(filme_params.except(:tags))
+
+    tags_string = filme_params[:tags]
+    if tags_string.present?
+      tags_array = tags_string.split(" ").map(&:strip).reject(&:blank?)
+
+      tags_array.each do |tag_nome|
+        @filme.tags.build(nome: tag_nome)
+      end
+    end
 
     respond_to do |format|
       if @filme.save
@@ -84,6 +93,6 @@ class FilmesController < ApplicationController
     end
 
     def filme_params
-      params.require(:filme).permit(:titulo, :sinopse, :ano, :duracao, :diretor, :poster, categoria_ids: [])
+      params.require(:filme).permit(:titulo, :sinopse, :ano, :duracao, :diretor, :poster, :tags, categoria_ids: [])
     end
 end
