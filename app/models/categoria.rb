@@ -3,9 +3,9 @@ class Categoria < ApplicationRecord
   validates :nome, presence: true, uniqueness: true
 
   def self.ransackable_associations(auth_object = nil)
-    ["filmes"]
+    %w[filmes]
   end
   def self.ransackable_attributes(auth_object = nil)
-    %w["id", "nome"]
+    %w[id nome]
   end
 end

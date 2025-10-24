@@ -4,21 +4,14 @@ class FilmesController < ApplicationController
   before_action :authorize_usuario!, only: [ :edit, :update, :destroy ]
 
   def index
-    filmes = Filme.all
-
-    categoria_ids = Array(params.dig(:q, :categorias_id_in)).reject(&:blank?)
-    filmes = filmes.por_categorias(categoria_ids) if categoria_ids.any?
-
-    q_params = params[:q] ? params[:q].except(:categorias_id_in) : {}
-    @q = filmes.ransack(q_params)
-
+    @q = Filme.ransack(params[:q])
     @filmes = @q.result(distinct: true)
                 .order(ano: :desc, titulo: :asc)
                 .paginate(page: params[:page], per_page: 6)
 
     @categorias = Categoria.joins(:filmes).distinct.select(:id, :nome).order(:nome)
-    @diretores  = Filme.distinct.pluck(:diretor)
-    @anos       = Filme.distinct.pluck(:ano)
+    @diretores = Filme.distinct.pluck(:diretor).compact.sort
+    @anos = Filme.distinct.pluck(:ano).compact.sort.reverse
   end
 
   def show
@@ -32,20 +25,11 @@ class FilmesController < ApplicationController
   end
 
   def create
-    @filme = current_usuario.filmes.build(filme_params.except(:tags))
-
-    tags_string = filme_params[:tags]
-    if tags_string.present?
-      tags_array = tags_string.split(" ").map(&:strip).reject(&:blank?)
-
-      tags_array.each do |tag_nome|
-        @filme.tags.build(nome: tag_nome)
-      end
-    end
+    @filme = current_usuario.filmes.build(filme_params)
 
     respond_to do |format|
       if @filme.save
-        format.html { redirect_to @filme, notice: "Filme was successfully created." }
+        format.html { redirect_to @filme, notice: "Filme criado com sucesso." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -53,15 +37,9 @@ class FilmesController < ApplicationController
   end
 
   def update
-    update_params = filme_params.except(:tags)
-
-    @filme.tags = filme_params[:tags].split(" ").map(&:strip).reject(&:blank?).each do |tag_nome|
-      @filme.tags.build(nome: tag_nome)
-    end
-
     respond_to do |format|
-      if @filme.update(update_params)
-        format.html { redirect_to @filme, notice: "Filme was successfully updated.", status: :see_other }
+      if @filme.update(filme_params)
+        format.html { redirect_to @filme, notice: "Filme atualizado com sucesso.", status: :see_other }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -113,6 +91,6 @@ class FilmesController < ApplicationController
     end
 
     def filme_params
-      params.require(:filme).permit(:titulo, :sinopse, :ano, :duracao, :diretor, :poster, :tags, categoria_ids: [])
+      params.require(:filme).permit(:titulo, :sinopse, :ano, :duracao, :diretor, :poster, :tags_texto, categoria_ids: [])
     end
 end

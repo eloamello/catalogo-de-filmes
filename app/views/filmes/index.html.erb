@@ -36,7 +36,7 @@
               <div class="accordion-body">
                 <% @categorias.each do |c| %>
                   <div class="form-check d-flex justify-content-between">
-                    <%= check_box_tag "q[categorias_id_in][]", c.id, params.dig(:q, :categorias_id_in)&.include?(c.id.to_s), class: "form-check-input", id: "cat_#{c.id}" %>
+                    <%= check_box_tag "q[por_categorias][]", c.id, params.dig(:q, :por_categorias)&.include?(c.id.to_s), class: "form-check-input", id: "cat_#{c.id}" %>
                     <%= label_tag "cat_#{c.id}", c.nome, class: "form-check-label flex-grow-1" %>
                     <span class="text-muted ms-2"><%= c.filmes.count %></span>
                   </div>

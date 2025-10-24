@@ -60,11 +60,10 @@
     </div>
 
     <div class="formulario__grupo">
-      <%= form.label :tags, "Tags", class: "formulario__label" %>
-      <%= form.text_field :tags,
-                          value: filme.tags.pluck(:nome).join(" "),
+      <%= form.label :tags_texto, "Tags", class: "formulario__label" %>
+      <%= form.text_field :tags_texto,
                           class: "formulario__input",
-                          placeholder: "Separe as tags por espaço" %>
+                          placeholder: "acao drama suspense (separadas por espaço)" %>
     </div>
 
     <div class="formulario__acoes">
