@@ -20,7 +20,7 @@ class CategoriasController < ApplicationController
     @categoria = Categoria.find_or_create_by(nome: categoria_params[:nome].strip)
 
     if @categoria.persisted?
-      redirect to categorias_path, notice: t(".success")
+      redirect_to categorias_path, notice: t(".success")
     else
       render :new, status: :unprocessable_content, alert: t(".failure")
     end

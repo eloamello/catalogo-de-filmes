@@ -11,7 +11,7 @@ pt-BR:
   comentarios:
     create:
         success: "Comentário enviado com sucesso."
-        failure: "Não foi póssível enviar o comentário."
+        failure: "Não foi possível enviar seu comentário."
   filmes:
     create:
         success: "Filme criado com sucesso."
@@ -19,8 +19,10 @@ pt-BR:
     update:
         success: "Filme atualizado com sucesso."
         failure: "Falha ao atualizar o filme."
+        unauthorized: "Você não pode alterar este filme."
     destroy:
         success: "Filme excluído com sucesso."
+        unauthorized: "Você não pode apagar este filme."
   importacao_filmes:
     create:
         success: "Importação de filmes iniciada com sucesso."

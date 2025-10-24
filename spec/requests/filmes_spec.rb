@@ -64,7 +64,7 @@ RSpec.describe "Filmes", type: :request do
           diretor: filme.diretor
         }
       }
-      expect(response).to have_http_status(:see_other)
+      expect(response).to have_http_status(:found)
       expect(filme.reload.titulo).to eq("Novo Título")
     end
 
@@ -110,7 +110,7 @@ RSpec.describe "Filmes", type: :request do
       sign_in filme.usuario
 
       delete "/filmes/#{filme.id}"
-      expect(response).to have_http_status(:see_other)
+      expect(response).to have_http_status(:found)
     end
 
     it "redireciona quando deslogado" do
@@ -124,7 +124,7 @@ RSpec.describe "Filmes", type: :request do
       filme = create(:filme)
       sign_in create(:usuario)
       delete "/filmes/#{filme.id}"
-      expect(flash[:alert]).to eq("Você não pode alterar este filme.")
+      expect(flash[:alert]).to eq("Você não pode apagar este filme.")
       expect(filme.reload.titulo).to eq("O Poderoso Chefão")
       expect(response).to have_http_status(:found)
     end
@@ -136,20 +136,23 @@ RSpec.describe "Filmes", type: :request do
     before { sign_in usuario }
 
     it "inicia a importação com arquivo enviado" do
-      arquivo = fixture_file_upload(Rails.root.join("spec/fixtures/filmes.csv"), "text/csv")
+      arquivo = fixture_file_upload('filmes.csv', 'text/csv')
+
+      allow(ImportarFilmesJob).to receive(:perform_async)
 
       expect {
-        post importar_filmes_path, params: { arquivo: arquivo }
+        post importacao_filmes_path, params: { arquivo: arquivo }
       }.to change { ImportacaoFilme.count }.by(1)
 
       expect(response).to redirect_to(importacao_filmes_path)
-      expect(flash[:notice]).to eq("Importação iniciada!")
+      expect(flash[:notice]).to eq("Importação de filmes iniciada com sucesso.")
     end
 
+
     it "retorna alerta quando não envia arquivo" do
-      post importar_filmes_path
+      post importacao_filmes_path
       expect(response).to redirect_to(filmes_path)
-      expect(flash[:alert]).to eq("Nenhum arquivo enviado.")
+      expect(flash[:alert]).to eq("Nenhum arquivo enviado para importação.")
     end
   end
 

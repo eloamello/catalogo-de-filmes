@@ -63,7 +63,7 @@ class FilmesController < ApplicationController
 
   private
     def authorize_usuario!
-      redirect_to filmes_path unless @filme.usuario == current_usuario
+      redirect_to filmes_path, alert: t(".unauthorized") unless @filme.usuario == current_usuario
     end
 
     def set_filme

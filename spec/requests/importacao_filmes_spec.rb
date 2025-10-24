@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "ImportacaoFilmes", type: :request do
   let(:usuario) { create(:usuario) }
-  let(:arquivo) { fixture_file_upload(Rails.root.join("spec/fixtures/filmes.csv"), "text/csv") }
+  let(:arquivo) { fixture_file_upload('filmes.csv', 'text/csv') }
   let!(:importacao) { create(:importacao_filme, usuario: usuario, arquivo: arquivo, status: :concluido) }
 
   describe "GET /importacao_filmes" do
