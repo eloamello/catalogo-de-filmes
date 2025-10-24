@@ -8,24 +8,24 @@
     <nav class="navbar-custom__menu">
       <div class="dropdown">
         <button class="navbar-custom__link dropdown-toggle" type="button" id="dropdownFilmes" data-bs-toggle="dropdown" aria-expanded="false">
-          Filmes
+          <%= t("movies") %>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownFilmes">
-          <li><%= link_to "Ver todos", filmes_path, class: "dropdown-item" %></li>
+          <li><%= link_to t(".see_all_movies"), filmes_path, class: "dropdown-item" %></li>
           <% if usuario_signed_in? %>
-            <li><%= link_to "Novo Filme", new_filme_path, class: "dropdown-item" %></li>
-            <li><%= link_to "Importações", importacao_filmes_path, class: "dropdown-item" %></li>
+            <li><%= link_to t(".new_movie"), new_filme_path, class: "dropdown-item" %></li>
+            <li><%= link_to t(".imports"), importacao_filmes_path, class: "dropdown-item" %></li>
           <% end %>
         </ul>
       </div>
       <% if usuario_signed_in? %>
         <div class="dropdown">
           <button class="navbar-custom__link dropdown-toggle" type="button" id="dropdownCategorias" data-bs-toggle="dropdown" aria-expanded="false">
-            Categorias
+            <%= t("categories") %>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownCategorias">
-            <li><%= link_to "Ver todas", categorias_path, class: "dropdown-item" %></li>
-            <li><%= link_to "Nova Categoria", new_categoria_path, class: "dropdown-item" %></li>
+            <li><%= link_to t(".see_all_categories"), categorias_path, class: "dropdown-item" %></li>
+            <li><%= link_to t(".new_category"), new_categoria_path, class: "dropdown-item" %></li>
           </ul>
         </div>
       <% end %>
@@ -40,14 +40,14 @@
             <i class="bi bi-chevron-down"></i>
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><%= link_to "Perfil", edit_usuario_registration_path, class: "dropdown-item" %></li>
+            <li><%= link_to t("perfil"), edit_usuario_registration_path, class: "dropdown-item" %></li>
             <li><hr class="dropdown-divider"></li>
-            <li><%= button_to "Sair", destroy_usuario_session_path, method: :delete, class: "dropdown-item" %></li>
+            <li><%= button_to t("sign_out"), destroy_usuario_session_path, method: :delete, class: "dropdown-item" %></li>
           </ul>
         </div>
       <% else %>
-        <%= link_to "Entrar", new_usuario_session_path, class: "botao botao--secundario botao--pequeno" %>
-        <%= link_to "Registrar", new_usuario_registration_path, class: "botao botao--primario botao--pequeno" %>
+        <%= link_to t("sign_in"), new_usuario_session_path, class: "botao botao--secundario botao--pequeno" %>
+        <%= link_to t("sign_up"), new_usuario_registration_path, class: "botao botao--primario botao--pequeno" %>
       <% end %>
     </div>
 
@@ -57,12 +57,12 @@
   </div>
 
   <div class="collapse navbar-custom__mobile" id="navbarMobile">
-    <%= link_to "Filmes", filmes_path, class: "navbar-custom__mobile-link" %>
-    <%= link_to "Categorias", categorias_path, class: "navbar-custom__mobile-link" %>
+    <%= link_to t("movies"), filmes_path, class: "navbar-custom__mobile-link" %>
+    <%= link_to t("categories"), categorias_path, class: "navbar-custom__mobile-link" %>
     <% unless usuario_signed_in? %>
       <div class="navbar-custom__mobile-acoes">
-        <%= link_to "Entrar", new_usuario_session_path, class: "botao botao--secundario botao--completo" %>
-        <%= link_to "Registrar", new_usuario_registration_path, class: "botao botao--primario botao--completo" %>
+        <%= link_to t("sign_in"), new_usuario_session_path, class: "botao botao--secundario botao--completo" %>
+        <%= link_to t("sign_up"), new_usuario_registration_path, class: "botao botao--primario botao--completo" %>
       </div>
     <% end %>
   </div>

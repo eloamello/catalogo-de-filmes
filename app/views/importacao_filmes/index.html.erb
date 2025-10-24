@@ -1,13 +1,10 @@
-<% content_for :title, "Importações" %>
-
-<h1>Importações de Filmes</h1>
-
+<% content_for :title, t(".title") %>
 <table class="table table-striped table-hover mt-3">
   <thead>
   <tr>
     <th>ID</th>
-    <th>Criada em</th>
-    <th>Status</th>
+    <th><%= t(".created_at") %></th>
+    <th><%= t(".status") %></th>
   </tr>
   </thead>
   <tbody>
@@ -18,11 +15,11 @@
       <td>
         <% case importacao.status %>
         <% when "em_andamento" %>
-          <span class="badge bg-warning text-dark">Em andamento</span>
+          <span class="badge bg-warning text-dark"><%= t("in_progress") %></span>
         <% when "concluido" %>
-          <span class="badge bg-success">Concluído</span>
+          <span class="badge bg-success"><%= t("completed") %></span>
         <% when "erro" %>
-          <span class="badge bg-danger">Erro</span>
+          <span class="badge bg-danger"><%= t("error") %></span>
         <% end %>
       </td>
     </tr>

@@ -60,7 +60,7 @@ RSpec.describe "Categorias", type: :request do
     it "retorna erro quando inválido" do
       sign_in usuario
       patch categoria_path(categoria), params: { categoria: { nome: "" } }
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
     end
   end
 

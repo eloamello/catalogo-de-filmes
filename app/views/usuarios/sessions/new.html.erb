@@ -1,25 +1,27 @@
-<% content_for :title, "Entrar" %>
+<% content_for :title, t('.title') %>
 
 <div class="pagina-autenticacao">
   <div class="formulario-auth">
     <div class="formulario-auth__cabecalho">
       <i class="bi bi-film"></i>
-      <h1>Bem-vindo de volta</h1>
-      <p>Entre com suas credenciais para continuar</p>
+      <h1><%= t('.heading') %></h1>
+      <p><%= t('.description') %></p>
     </div>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= render "usuarios/shared/error_messages", resource: resource %>
+
       <div class="formulario-auth__grupo">
-        <%= f.label :email, "E-mail", class: "formulario-auth__label" %>
+        <%= f.label :email, t('.email_label'), class: "formulario-auth__label" %>
         <%= f.email_field :email,
                           autofocus: true,
                           autocomplete: "email",
                           class: "formulario-auth__input",
-                          placeholder: "seu@email.com" %>
+                          placeholder: t('.email_placeholder') %>
       </div>
 
       <div class="formulario-auth__grupo">
-        <%= f.label :password, "Senha", class: "formulario-auth__label" %>
+        <%= f.label :password, t('.password'), class: "formulario-auth__label" %>
         <%= f.password_field :password,
                              autocomplete: "current-password",
                              class: "formulario-auth__input",
@@ -30,22 +32,22 @@
         <% if devise_mapping.rememberable? %>
           <label class="formulario-auth__checkbox">
             <%= f.check_box :remember_me %>
-            <span>Lembrar de mim</span>
+            <span><%= t('.remember_me') %></span>
           </label>
         <% end %>
 
         <% if devise_mapping.recoverable? %>
-          <%= link_to "Esqueceu a senha?", new_password_path(resource_name), class: "formulario-auth__link" %>
+          <%= link_to t('.forgot_password'), new_password_path(resource_name), class: "formulario-auth__link" %>
         <% end %>
       </div>
 
-      <%= f.submit "Entrar", class: "botao botao--primario botao--completo botao--grande" %>
+      <%= f.submit t('.submit'), class: "botao botao--primario botao--completo botao--grande" %>
     <% end %>
 
     <div class="formulario-auth__rodape">
       <p>
-        Não tem uma conta?
-        <%= link_to "Registre-se", new_registration_path(resource_name), class: "formulario-auth__link" %>
+        <%= t('.no_account') %>
+        <%= link_to t('.sign_up'), new_registration_path(resource_name), class: "formulario-auth__link" %>
       </p>
     </div>
   </div>

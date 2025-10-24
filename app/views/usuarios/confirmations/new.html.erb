@@ -1,27 +1,27 @@
-<% content_for :title, "Reenviar confirmação" %>
+<% content_for :title, t('.title') %>
 
 <div class="pagina-autenticacao">
   <div class="formulario-auth">
     <div class="formulario-auth__cabecalho">
       <i class="bi bi-envelope-check"></i>
-      <h1>Reenviar confirmação</h1>
-      <p>Digite seu e-mail para receber novamente as instruções de confirmação</p>
+      <h1><%= t('.heading') %></h1>
+      <p><%= t('.description') %></p>
     </div>
 
     <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
       <%= render "usuarios/shared/error_messages", resource: resource %>
 
       <div class="formulario-auth__grupo">
-        <%= f.label :email, "E-mail", class: "formulario-auth__label" %>
+        <%= f.label :email, t('.email_label'), class: "formulario-auth__label" %>
         <%= f.email_field :email,
                           autofocus: true,
                           autocomplete: "email",
                           class: "formulario-auth__input",
                           value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
-                          placeholder: "seu@email.com" %>
+                          placeholder: t('.email_placeholder') %>
       </div>
 
-      <%= f.submit "Reenviar instruções", class: "botao botao--primario botao--completo botao--grande" %>
+      <%= f.submit t('.submit'), class: "botao botao--primario botao--completo botao--grande" %>
     <% end %>
 
     <div class="formulario-auth__rodape">

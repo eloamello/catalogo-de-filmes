@@ -13,12 +13,12 @@
 
     <div class="col-md-8">
       <h1 class="mb-2"><%= @filme.titulo %> (<%= @filme.ano %>)</h1>
-      <p class="mb-1"><strong>Diretor:</strong> <%= @filme.diretor %></p>
-      <p class="mb-1"><strong>Duração:</strong> <%= @filme.duracao %> min</p>
+      <p class="mb-1"><%= t("director") %>: <%= @filme.diretor %></p>
+      <p class="mb-1"><%= t("duration") %>: <%= @filme.duracao %> min</p>
       <p class="mb-3"><%= @filme.sinopse %></p>
 
       <% if @filme.categorias.any? %>
-        <p class="mb-2"><strong>Categorias:</strong> <%= @filme.categorias.map(&:nome).join(", ") %></p>
+        <p class="mb-2"><%= t("categories") %>: <%= @filme.categorias.map(&:nome).join(", ") %></p>
       <% end %>
 
       <% if @filme.tags.any? %>
@@ -33,35 +33,35 @@
 
   <% if usuario_signed_in? && @filme.usuario == current_usuario %>
     <div class="mb-4">
-      <%= link_to "Editar filme", edit_filme_path(@filme), class: "botao botao--secundario" %>
+      <%= link_to t("edit"), edit_filme_path(@filme), class: "botao botao--secundario" %>
     </div>
   <% end %>
 
   <hr class="my-4">
 
   <div class="comentarios mb-5">
-    <h4 class="mb-3">Deixe seu comentário</h4>
+    <h4 class="mb-3"><%= t(".leave_your_comment") %></h4>
 
     <%= form_with(model: [@filme, Comentario.new], local: true, class: "mb-4") do |form| %>
       <% unless usuario_signed_in? %>
         <div class="formulario__grupo mb-3">
-          <%= form.label :nome_visitante, "Nome", class: "formulario__label" %>
-          <%= form.text_field :nome_visitante, class: "formulario__input", placeholder: "Digite seu nome" %>
+          <%= form.label :nome_visitante, t("name"), class: "formulario__label" %>
+          <%= form.text_field :nome_visitante, class: "formulario__input", placeholder: t(".placeholder_comment_name") %>
         </div>
       <% end %>
 
       <div class="formulario__grupo mb-3">
-        <%= form.label :conteudo, "Comentário", class: "formulario__label" %>
-        <%= form.text_area :conteudo, class: "formulario__input", rows: 3, placeholder: "Escreva seu comentário" %>
+        <%= form.label :conteudo, t("comment"), class: "formulario__label" %>
+        <%= form.text_area :conteudo, class: "formulario__input", rows: 3, placeholder: t(".placeholder_comment_content") %>
       </div>
 
       <%= form.submit "Postar comentário", class: "botao botao--primario" %>
     <% end %>
 
-    <h4 class="mb-3">Comentários (<%= @filme.comentarios.count %>)</h4>
+    <h4 class="mb-3"><%= t("comments") %> (<%= @filme.comentarios.count %>)</h4>
     <% @filme.comentarios.each do |comentario| %>
       <div class="comentario-card border p-3 mb-2 rounded shadow-sm">
-        <p class="mb-1"><strong><%= comentario.usuario&.nome || comentario.nome_visitante %></strong> disse:</p>
+        <p class="mb-1"><%= comentario.usuario&.nome || comentario.nome_visitante %> <%= t(".said") %>:</p>
         <p class="mb-0"><%= comentario.conteudo %></p>
       </div>
     <% end %>

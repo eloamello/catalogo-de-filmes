@@ -6,9 +6,9 @@ class ComentariosController < ApplicationController
     @comentario.usuario = current_usuario if usuario_signed_in?
 
     if @comentario.save
-      redirect_to @filme, notice: "Comentário enviado com sucesso."
+      redirect_to @filme, notice: t(".success")
     else
-      redirect_to @filme, alert: "Não foi possível enviar seu comentário."
+      redirect_to @filme, alert: t(".failure")
     end
   end
 

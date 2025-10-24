@@ -1,38 +1,32 @@
-<% content_for :title, "Recuperar Senha" %>
+<% content_for :title, t('.title') %>
 
 <div class="pagina-autenticacao">
   <div class="formulario-auth">
     <div class="formulario-auth__cabecalho">
       <i class="bi bi-key"></i>
-      <h1>Esqueceu sua senha?</h1>
-      <p>Sem problemas! Digite seu e-mail e enviaremos instruções para redefinir</p>
+      <h1><%= t('.heading') %></h1>
+      <p><%= t('.description') %></p>
     </div>
 
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-      <% if resource.errors.any? %>
-        <div class="alert alert-danger">
-          <% resource.errors.full_messages.each do |message| %>
-            <p><%= message %></p>
-          <% end %>
-        </div>
-      <% end %>
+      <%= render "usuarios/shared/error_messages", resource: resource %>
 
       <div class="formulario-auth__grupo">
-        <%= f.label :email, "E-mail", class: "formulario-auth__label" %>
+        <%= f.label :email, t('.email_label'), class: "formulario-auth__label" %>
         <%= f.email_field :email,
                           autofocus: true,
                           autocomplete: "email",
                           class: "formulario-auth__input",
-                          placeholder: "seu@email.com" %>
+                          placeholder: t('.email_placeholder') %>
       </div>
 
-      <%= f.submit "Enviar instruções", class: "botao botao--primario botao--completo botao--grande" %>
+      <%= f.submit t('.submit'), class: "botao botao--primario botao--completo botao--grande" %>
     <% end %>
 
     <div class="formulario-auth__rodape">
       <p>
-        Lembrou sua senha?
-        <%= link_to "Voltar para o login", new_session_path(resource_name), class: "formulario-auth__link" %>
+        <%= t('.remembered_text') %>
+        <%= link_to t('.back_to_login'), new_session_path(resource_name), class: "formulario-auth__link" %>
       </p>
     </div>
   </div>

@@ -19,27 +19,24 @@ class CategoriasController < ApplicationController
   def create
     @categoria = Categoria.find_or_create_by(nome: categoria_params[:nome].strip)
 
-    respond_to do |format|
-      format.html { redirect_to categorias_path }
+    if @categoria.persisted?
+      redirect to categorias_path, notice: t(".success")
+    else
+      render :new, status: :unprocessable_content, alert: t(".failure")
     end
   end
 
   def update
-    respond_to do |format|
-      if @categoria.update(categoria_params)
-        format.html { redirect_to categorias_path, notice: "Categoria was successfully updated.", status: :see_other }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    if @categoria.update(categoria_params)
+      redirect_to categorias_path, notice: t(".success")
+    else
+      render :edit, status: :unprocessable_content, alert: t(".failure")
     end
   end
 
   def destroy
-    @categoria.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to categorias_path, notice: "Categoria was successfully destroyed.", status: :see_other }
-    end
+    @categoria.destroy
+    redirect_to categorias_path, notice: t(".success")
   end
 
   private

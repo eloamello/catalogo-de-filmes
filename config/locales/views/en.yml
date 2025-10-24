@@ -1,0 +1,211 @@
+en:
+  save: "Save"
+  update: "Update"
+  edit: "Edit"
+  cancel: "Cancel"
+  delete: "Delete"
+  close: "Close"
+  search: "Search"
+  filter: "Filter"
+  back: "Back"
+  name: "Name"
+  actions: "Actions"
+  sure: "Are you sure?"
+  poster: "Poster"
+  title: "Title"
+  synopsis: "Synopsis"
+  year: "Year"
+  years: "Years"
+  duration: "Duration"
+  director: "Director"
+  directors: "Directors"
+  categories: "Categories"
+  comment: "Comment"
+  comments: "Comments"
+  movies: "Movies"
+  tags: "Tags"
+  import: "Import"
+  in_progress: "In Progress"
+  completed: "Completed"
+  error: "Error"
+  navigation: "Navigation"
+  account: "Account"
+  perfil: "Profile"
+  sign_in: "Sign In"
+  sign_out: "Sign Out"
+  sign_up: "Sign Up"
+
+  categorias:
+    index:
+      title: "Categories"
+    form:
+      placeholder_name: "Ex: Action, Comedy, Drama"
+    new:
+      title: "New Category"
+    edit:
+      title: "Edit Category"
+
+  filmes:
+    filme:
+      direction: "Direction"
+      details: "Details"
+    form:
+      placeholder_tags: "top10 oscar winner (separated by space)"
+      search_using_ai: "Search with AI"
+    modal_importar_csv:
+      import_movies: "Import Movies"
+      import_instructions: |
+        Select a CSV file to import movies.
+        Make sure the file is formatted correctly.
+        The CSV must contain the following headers:
+        title, synopsis, year, duration, and director.
+        Categories and tags can be added after import.
+      choose_csv: "Choose CSV"
+    edit:
+      title: "Edit Movie"
+    index:
+      title: "Movies"
+      new_movie_button: "New Movie"
+      search_by_title: "Search by title"
+      search_by_director: "Search by director"
+      search_by_year: "Search by year"
+    new:
+      title: "New Movie"
+      import_csv: "Import CSV"
+    show:
+      leave_your_comment: "Leave your comment"
+      placeholder_comment_name: "Enter your name"
+      placeholder_comment_content: "Write your comment here..."
+      said: "said"
+
+  importacao_filmes:
+    index:
+      title: "Imports"
+      created_at: "Created at"
+      status: "Status"
+
+  usuarios:
+    minimum_characters: "characters minimum"
+    confirmations:
+      new:
+        title: "Resend Confirmation"
+        heading: "Resend Confirmation"
+        description: "Enter your email to receive the confirmation instructions again"
+        email_label: "Email"
+        email_placeholder: "your@email.com"
+        submit: "Resend instructions"
+    passwords:
+      edit:
+        title: "Change Password"
+        heading: "Change Password"
+        description: "Choose a new password for your account"
+        new_password: "New Password"
+        confirm_password: "Confirm New Password"
+        submit: "Change Password"
+      new:
+        title: "Recover Password"
+        heading: "Forgot your password?"
+        description: "No worries! Enter your email and we will send instructions to reset it"
+        email_label: "Email"
+        email_placeholder: "your@email.com"
+        submit: "Send Instructions"
+        remembered_text: "Remembered your password?"
+        back_to_login: "Back to login"
+    registrations:
+      edit:
+        title: "Edit Profile"
+        heading: "Edit Profile"
+        description: "Update your information below"
+        nome_label: "Name"
+        nome_placeholder: "Your full name"
+        email_label: "Email"
+        email_placeholder: "your@email.com"
+        waiting_confirmation: "Awaiting confirmation for: %{email}"
+        new_password: "New Password"
+        new_password_hint: "leave blank if you don't want to change"
+        confirm_password: "Confirm New Password"
+        current_password: "Current Password"
+        submit: "Update"
+        back: "Back"
+      new:
+        title: "Sign Up"
+        heading: "Create Your Account"
+        description: "Fill in your details to get started"
+        nome_label: "Name"
+        nome_placeholder: "Your Name"
+        email_label: "Email"
+        email_placeholder: "your@email.com"
+        password: "Password"
+        password_confirmation: "Confirm Password"
+        submit: "Create Account"
+        already_have_account: "Already have an account?"
+        sign_in: "Sign In"
+    sessions:
+      new:
+        title: "Sign In"
+        heading: "Welcome Back"
+        description: "Enter your credentials to continue"
+        email_label: "Email"
+        email_placeholder: "your@email.com"
+        password: "Password"
+        remember_me: "Remember me"
+        forgot_password: "Forgot your password?"
+        submit: "Sign In"
+        no_account: "Don't have an account?"
+        sign_up: "Sign Up"
+    shared:
+      links:
+        log_in: "Sign In"
+        sign_up: "Sign Up"
+        forgot_password: "Forgot your password?"
+        resend_confirmation: "Didn't receive confirmation instructions?"
+        resend_unlock: "Didn't receive unlock instructions?"
+        sign_in_with: "Sign in with %{provider}"
+    mailer:
+      confirmation_instructions:
+        subject: "Confirmation Instructions"
+        greeting: "Hello %{nome}!"
+        message_html: |
+          You can confirm your email by clicking the link below:
+          %{confirmation_link}
+      email_changed:
+        subject: "Email Changed"
+        greeting: "Hello %{nome}!"
+        message_html:
+          unconfirmed: "We are contacting you to notify that your email is being changed to %{email}."
+          confirmed: "We are contacting you to notify that your email has been changed to %{email}."
+      password_change:
+        subject: "Password Changed"
+        greeting: "Hello %{nome}!"
+        message_html: "We are contacting you to notify that your password has been changed."
+      reset_password_instructions:
+        subject: "Reset Password Instructions"
+        greeting: "Hello %{nome}!"
+        message_html: |
+          Someone has requested a link to change your password. You can do this through the link below:
+        change_password_link: "Change my password"
+        ignore_notice: "If you didn't request this, please ignore this email."
+        note: "Your password won't change until you access the link above and create a new one."
+      unlock_instructions:
+        subject: "Unlock Account Instructions"
+        greeting: "Hello %{nome}!"
+        message_html: "Your account has been locked due to multiple unsuccessful sign in attempts."
+        unlock_link_text: "Unlock my account"
+
+  shared:
+    footer:
+      presentation_phrase: "Your personal movie catalog"
+      developed_by: "Developed by %{developer_name}"
+    navbar:
+      new_movie: "New Movie"
+      new_category: "New Category"
+      imports: "Imports"
+      see_all_movies: "See All"
+      see_all_categories: "See All"
+
+  importacao_filmes_mailer:
+    importacao_finalizada:
+      saudacao: "Hello %{nome}!"
+      mensagem_html: |
+        The import %{id} has been completed successfully.
+        instructions: "You can now view the imported movies in your account."

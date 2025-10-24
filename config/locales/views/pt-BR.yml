@@ -1,0 +1,211 @@
+pt-BR:
+  save: "Salvar"
+  update: "Atualizar"
+  edit: "Editar"
+  cancel: "Cancelar"
+  delete: "Excluir"
+  close: "Fechar"
+  search: "Buscar"
+  filter: "Filtrar"
+  back: "Voltar"
+  name: "Nome"
+  actions: "Ações"
+  sure: "Tem certeza?"
+  poster: "Poster"
+  title: "Título"
+  synopsis: "Sinopse"
+  year: "Ano"
+  years: "Anos"
+  duration: "Duração"
+  director: "Diretor"
+  directors: "Diretores"
+  categories: "Categorias"
+  comment: "Comentário"
+  comments: "Comentários"
+  movies: "Filmes"
+  tags: "Tags"
+  import: "Importar"
+  in_progress: "Em progresso"
+  completed: "Concluído"
+  error: "Erro"
+  navigation: "Navegação"
+  account: "Conta"
+  perfil: "Perfil"
+  sign_in: "Entrar"
+  sign_out: "Sair"
+  sign_up: "Registrar"
+
+  categorias:
+    index:
+      title: "Categorias"
+    form:
+      placeholder_name: "Ex: Ação, Comédia, Drama"
+    new:
+      title: "Nova Categoria"
+    edit:
+      title: "Editar Categoria"
+
+  filmes:
+    filme:
+      direction: "Direção"
+      details: "Detalhes"
+    form:
+        placeholder_tags: "top10 oscar premiado (separados por espaço)"
+        search_using_ai: "Buscar por IA"
+    modal_importar_csv:
+      import_movies: "Importar Filmes"
+      import_instructions: |
+        Selecione um arquivo CSV para importar os filmes.
+        Certifique-se que o arquivo está formatado corretamente.
+        O CSV deve conter os seguintes cabeçalhos:
+        titulo, sinopse, ano, duracao e diretor.
+        Categorias e tags podem ser adicionadas após a importação.
+      choose_csv: "Escolha o CSV"
+    edit:
+      title: "Editar Filme"
+    index:
+      title: "Filmes"
+      new_movie_button: "Novo Filme"
+      search_by_title: "Buscar por título"
+      search_by_director: "Buscar por diretor"
+      search_by_year: "Buscar por ano"
+    new:
+      title: "Novo Filme"
+      import_csv: "Importar CSV"
+    show:
+      leave_your_comment: "Deixe seu comentário"
+      placeholder_comment_name: "Digite seu nome"
+      placeholder_comment_content: "Escreva seu comentário aqui..."
+      said: "disse"
+
+  importacao_filmes:
+    index:
+      title: "Importações"
+      created_at: "Criada em"
+      status: "Status"
+
+  usuarios:
+    minimum_characters: "caracteres no mínimo"
+    confirmations:
+      new:
+        title: "Reenviar confirmação"
+        heading: "Reenviar confirmação"
+        description: "Digite seu e-mail para receber novamente as instruções de confirmação"
+        email_label: "E-mail"
+        email_placeholder: "seu@email.com"
+        submit: "Reenviar instruções"
+    passwords:
+      edit:
+        title: "Alterar senha"
+        heading: "Alterar senha"
+        description: "Escolha uma nova senha para sua conta"
+        new_password: "Nova senha"
+        confirm_password: "Confirmar nova senha"
+        submit: "Alterar senha"
+      new:
+        title: "Recuperar senha"
+        heading: "Esqueceu sua senha?"
+        description: "Sem problemas! Digite seu e-mail e enviaremos instruções para redefinir"
+        email_label: "E-mail"
+        email_placeholder: "seu@email.com"
+        submit: "Enviar instruções"
+        remembered_text: "Lembrou sua senha?"
+        back_to_login: "Voltar para o login"
+    registrations:
+      edit:
+        title: "Editar perfil"
+        heading: "Editar perfil"
+        description: "Atualize seus dados abaixo"
+        nome_label: "Nome"
+        nome_placeholder: "Seu nome completo"
+        email_label: "E-mail"
+        email_placeholder: "seu@email.com"
+        waiting_confirmation: "Aguardando confirmação para: %{email}"
+        new_password: "Nova senha"
+        new_password_hint: "deixe em branco se não quiser alterar"
+        confirm_password: "Confirmar nova senha"
+        current_password: "Senha atual"
+        submit: "Atualizar"
+        back: "Voltar"
+      new:
+        title: "Registrar"
+        heading: "Crie sua conta"
+        description: "Preencha seus dados para começar"
+        nome_label: "Nome"
+        nome_placeholder: "Seu nome"
+        email_label: "E-mail"
+        email_placeholder: "seu@email.com"
+        password: "Senha"
+        password_confirmation: "Confirmar senha"
+        submit: "Criar conta"
+        already_have_account: "Já tem uma conta?"
+        sign_in: "Entrar"
+    sessions:
+      new:
+        title: "Entrar"
+        heading: "Bem-vindo de volta"
+        description: "Entre com suas credenciais para continuar"
+        email_label: "E-mail"
+        email_placeholder: "seu@email.com"
+        password: "Senha"
+        remember_me: "Lembrar de mim"
+        forgot_password: "Esqueceu a senha?"
+        submit: "Entrar"
+        no_account: "Não tem uma conta?"
+        sign_up: "Registre-se"
+    shared:
+      links:
+        log_in: "Entrar"
+        sign_up: "Registrar"
+        forgot_password: "Esqueceu sua senha?"
+        resend_confirmation: "Não recebeu as instruções de confirmação?"
+        resend_unlock: "Não recebeu as instruções de desbloqueio?"
+        sign_in_with: "Entrar com %{provider}"
+    mailer:
+      confirmation_instructions:
+        subject: "Instruções de confirmação"
+        greeting: "Olá %{nome}!"
+        message_html: |
+          Você pode confirmar seu e-mail clicando no link abaixo:
+          %{confirmation_link}
+      email_changed:
+        subject: "E-mail alterado"
+        greeting: "Olá %{nome}!"
+        message_html:
+          unconfirmed: "Estamos entrando em contato para informar que seu e-mail está sendo alterado para %{email}."
+          confirmed: "Estamos entrando em contato para informar que seu e-mail foi alterado para %{email}."
+      password_change:
+        subject: "Senha alterada"
+        greeting: "Olá %{nome}!"
+        message_html: "Estamos entrando em contato para informar que sua senha foi alterada."
+      reset_password_instructions:
+        subject: "Instruções para troca de senha"
+        greeting: "Olá %{nome}!"
+        message_html: |
+        Alguém solicitou um link para alterar sua senha. Você pode fazer isso através do link abaixo:
+        change_password_link: "Alterar minha senha"
+        ignore_notice: "Se você não solicitou isso, por favor, ignore este e-mail."
+        note: "Sua senha não será alterada até que você acesse o link acima e crie uma nova."
+      unlock_instructions:
+        subject: "Instruções para desbloqueio de conta"
+        greeting: "Olá %{nome}!"
+        message_html: "Sua conta foi bloqueada devido a várias tentativas de login malsucedidas."
+        unlock_link_text: "Desbloquear minha conta"
+
+  shared:
+    footer:
+      presentation_phrase: "Seu catálogo pessoal de filmes"
+      developed_by: "Desenvolvido por %{developer_name}"
+    navbar:
+      new_movie: "Novo Filme"
+      new_category: "Nova Categoria"
+      imports: "Importações"
+      see_all_movies: "Ver Todos"
+      see_all_categories: "Ver Todas"
+
+  importacao_filmes_mailer:
+    importacao_finalizada:
+      saudacao: "Olá %{nome}!"
+      mensagem_html: |
+        A importação %{id} foi concluída com sucesso.
+        instrucoes: "Agora você já pode visualizar os filmes importados na sua conta."

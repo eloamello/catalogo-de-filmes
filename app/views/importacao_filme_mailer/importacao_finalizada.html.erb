@@ -1,7 +1,7 @@
-<p>Olá <%= @usuario.nome %>!</p>
+<p><%= t(".saudacao", nome: @usuario.nome) %></p>
 
 <p>
-  A importação <strong><%= @importacao_filme.id %></strong> foi concluída com sucesso.
+  <%= t(".mensagem_html", id: @importacao_filme.id) %>
 </p>
 
-<p>Agora você já pode visualizar os filmes importados na sua conta.</p>
+<p><%= t(".instrucoes") %></p>

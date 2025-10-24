@@ -1,21 +1,21 @@
 <div class="formulario">
   <div class="formulario__container">
     <h2 class="formulario__titulo">
-      <%= categoria.new_record? ? 'Nova Categoria' : 'Editar Categoria' %>
+      <%= categoria.new_record? ? t("categorias.new.title") : t("categorias.edit.title") %>
     </h2>
 
-    <%= form_with(model: categoria) do |form| %>
+    <%= form_with(model: categoria) do |f| %>
       <div class="formulario__grupo">
-        <%= form.label :nome, "Nome", class: "formulario__label" %>
-        <%= form.text_field :nome,
-                            class: "formulario__input",
-                            placeholder: "Ex: Ação, Comédia, Drama...",
-                            autofocus: true %>
+        <%= f.label :nome, t("name"), class: "formulario__label" %>
+        <%= f.text_field :nome,
+                         class: "formulario__input",
+                         placeholder: t(".placeholder.name"),
+                         autofocus: true %>
       </div>
 
       <div class="formulario__acoes">
-        <%= form.submit "Salvar Categoria", class: "formulario__botao formulario__botao--primario" %>
-        <%= link_to "Cancelar", categorias_path, class: "formulario__botao formulario__botao--secundario" %>
+        <%= f.submit categoria.new_record? ? t("save") : t("update"), class: "formulario__botao formulario__botao--primario" %>
+        <%= link_to t("cancel"), categorias_path, class: "formulario__botao formulario__botao--secundario" %>
       </div>
     <% end %>
   </div>

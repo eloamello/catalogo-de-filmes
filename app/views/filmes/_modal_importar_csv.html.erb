@@ -2,27 +2,24 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content shadow-lg rounded-3">
       <div class="modal-header border-0">
-        <h5 class="modal-title" id="importarModalLabel">Importar Filmes</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        <h5 class="modal-title" id="importarModalLabel"><%= t(".import_movies") %></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<%= t("close") %>"></button>
       </div>
 
       <div class="modal-body">
-        <p class="mb-3 text-muted">Selecione um arquivo CSV para importar os filmes.
-          Certifique-se que o arquivo está formatado corretamente.
-          O CSV deve conter os seguintes cabeçalhos:
-          <strong>titulo, sinopse, ano, duracao e diretor</strong>.
-          Categorias e tags podem ser adicionadas após a importação.
+        <p class="mb-3 text-muted">
+          <%= t(".import_instructions") %>
         </p>
 
         <%= form_with url: importacao_filmes_path, local: true, html: { multipart: true, class: "form-importar-filmes" } do |f| %>
           <div class="mb-3">
-            <%= f.label :arquivo, "Escolha o CSV", class: "form-label" %>
+            <%= f.label :arquivo, t(".choose_csv"), class: "form-label" %>
             <%= f.file_field :arquivo, class: "form-control" , accept: ".csv" %>
           </div>
 
           <div class="modal-footer border-0 p-0 mt-3 d-flex gap-2">
-            <%= f.submit "Importar", class: "botao botao--primario flex-fill" %>
-            <button type="button" class="botao botao--secundario flex-fill" data-bs-dismiss="modal">Cancelar</button>
+            <%= f.submit t("import"), class: "botao botao--primario flex-fill" %>
+            <button type="button" class="botao botao--secundario flex-fill" data-bs-dismiss="modal"><%= t("cancel") %></button>
           </div>
       <% end %>
       </div>

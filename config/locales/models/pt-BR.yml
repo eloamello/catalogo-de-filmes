@@ -1,0 +1,16 @@
+pt-BR:
+  activerecord:
+    models:
+      usuario: "Usuário"
+    attributes:
+        usuario:
+            email: "E-mail"
+            password: "Senha"
+            password_confirmation: "Confirmação de Senha"
+            nome: "Nome"
+    errors:
+      messages:
+        taken: "já está em uso"
+        blank: "não pode ficar em branco"
+        too_short: "é muito curto (mínimo de %{count} caracteres)"
+        confirmation: "não corresponde à senha"

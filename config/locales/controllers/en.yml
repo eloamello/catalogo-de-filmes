@@ -1,0 +1,28 @@
+en:
+  categorias:
+    create:
+      success: "Category created successfully."
+      failure: "Failed to create category."
+    update:
+      success: "Category updated successfully."
+      failure: "Failed to update category."
+    destroy:
+      success: "Category deleted successfully."
+  comentarios:
+    create:
+      success: "Comment submitted successfully."
+      failure: "Failed to submit comment."
+  filmes:
+    create:
+      success: "Movie created successfully."
+      failure: "Failed to create movie."
+    update:
+      success: "Movie updated successfully."
+      failure: "Failed to update movie."
+    destroy:
+      success: "Movie deleted successfully."
+  importacao_filmes:
+    create:
+      success: "Movie import started successfully."
+      failure: "Failed to start movie import."
+      no_file: "No file uploaded for import."

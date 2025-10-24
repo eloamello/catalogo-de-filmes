@@ -27,22 +27,18 @@ class FilmesController < ApplicationController
   def create
     @filme = current_usuario.filmes.build(filme_params)
 
-    respond_to do |format|
-      if @filme.save
-        format.html { redirect_to @filme, notice: "Filme criado com sucesso." }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
+    if @filme.save
+      redirect_to @filme, notice: t(".success")
+    else
+      render :new, status: :unprocessable_content, alert: t(".failure")
     end
   end
 
   def update
-    respond_to do |format|
-      if @filme.update(filme_params)
-        format.html { redirect_to @filme, notice: "Filme atualizado com sucesso.", status: :see_other }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    if @filme.update(filme_params)
+      redirect_to @filme, notice: t(".success")
+    else
+      render :edit, status: :unprocessable_content, alert: t(".failure")
     end
   end
 

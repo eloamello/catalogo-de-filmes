@@ -1,9 +1,9 @@
-<% content_for :title, "Novo filme" %>
+<% content_for :title, t(".title") %>
 
 <div class="container my-5">
   <div>
     <button type="button" class="botao botao--primario botao--completo" data-bs-toggle="modal" data-bs-target="#importarModal">
-      Importar CSV
+      <%= t(".import_csv") %>
     </button>
   </div>
 

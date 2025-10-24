@@ -1,0 +1,28 @@
+pt-BR:
+  categorias:
+    create:
+        success: "Categoria criada com sucesso."
+        failure: "Falha ao criar a categoria."
+    update:
+        success: "Categoria atualizada com sucesso."
+        failure: "Falha ao atualizar a categoria."
+    destroy:
+        success: "Categoria excluída com sucesso."
+  comentarios:
+    create:
+        success: "Comentário enviado com sucesso."
+        failure: "Não foi póssível enviar o comentário."
+  filmes:
+    create:
+        success: "Filme criado com sucesso."
+        failure: "Falha ao criar o filme."
+    update:
+        success: "Filme atualizado com sucesso."
+        failure: "Falha ao atualizar o filme."
+    destroy:
+        success: "Filme excluído com sucesso."
+  importacao_filmes:
+    create:
+        success: "Importação de filmes iniciada com sucesso."
+        failure: "Falha ao iniciar a importação de filmes."
+        no_file: "Nenhum arquivo enviado para importação."

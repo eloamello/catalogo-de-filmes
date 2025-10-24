@@ -1,23 +1,23 @@
-<% content_for :title, "Filmes" %>
+<% content_for :title, t(".title") %>
 
 <div class="filmes-page">
   <div class="mb-3 d-flex gap-2">
-    <%= link_to "Novo Filme", new_filme_path, class: "botao botao--sucesso" %>
+    <%= link_to t(".new_movie_button"), new_filme_path, class: "botao botao--sucesso" %>
   </div>
 
   <div class="busca mb-4">
     <%= search_form_for @q, url: filmes_path, method: :get, local: true, class: "row g-2" do |f| %>
       <div class="col-md-4">
-        <%= f.text_field :titulo_cont, placeholder: "Buscar por título", class: "form-control" %>
+        <%= f.text_field :titulo_cont, placeholder: t(".search_by_title"), class: "form-control" %>
       </div>
       <div class="col-md-4">
-        <%= f.text_field :diretor_cont, placeholder: "Buscar por diretor", class: "form-control" %>
+        <%= f.text_field :diretor_cont, placeholder: t(".search_by_director"), class: "form-control" %>
       </div>
       <div class="col-md-2">
-        <%= f.number_field :ano_eq, placeholder: "Buscar por ano", class: "form-control" %>
+        <%= f.number_field :ano_eq, placeholder: t(".search_by_year"), class: "form-control" %>
       </div>
       <div class="col-md-2">
-        <%= f.submit "Buscar", class: "botao botao--primario botao--completo" %>
+        <%= f.submit t("search"), class: "botao botao--primario botao--completo" %>
       </div>
     <% end %>
   </div>
@@ -29,7 +29,7 @@
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingCategorias">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCategorias" aria-expanded="false" aria-controls="collapseCategorias">
-                Categorias
+                <%= t("categories") %>
               </button>
             </h2>
             <div id="collapseCategorias" class="accordion-collapse collapse" aria-labelledby="headingCategorias" data-bs-parent="#filtrosAccordion">
@@ -48,7 +48,7 @@
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingDiretores">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDiretores" aria-expanded="false" aria-controls="collapseDiretores">
-                Diretores
+                <%= t("directors") %>
               </button>
             </h2>
             <div id="collapseDiretores" class="accordion-collapse collapse" aria-labelledby="headingDiretores" data-bs-parent="#filtrosAccordion">
@@ -67,7 +67,7 @@
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingAnos">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAnos" aria-expanded="false" aria-controls="collapseAnos">
-                Anos
+                <%= t("years") %>
               </button>
             </h2>
             <div id="collapseAnos" class="accordion-collapse collapse" aria-labelledby="headingAnos" data-bs-parent="#filtrosAccordion">
@@ -84,7 +84,7 @@
           </div>
         </div>
 
-        <%= submit_tag "Filtrar", class: "botao botao--primario botao--completo mt-3" %>
+        <%= submit_tag t("filter"), class: "botao botao--primario botao--completo mt-3" %>
       <% end %>
     </div>
 

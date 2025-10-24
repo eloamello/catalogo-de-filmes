@@ -1,25 +1,7 @@
-<% content_for :title, "Editar Categoria" %>
+<% content_for :title, t(".title") %>
 
-<div class="pagina-autenticacao">
-  <div class="formulario-auth">
-    <div class="formulario-auth__cabecalho">
-      <i class="bi bi-pencil-square"></i>
-      <h1>Editar Categoria</h1>
-      <p>Atualize os dados da categoria abaixo</p>
-    </div>
-
-    <%= form_for(@categoria) do |f| %>
-      <div class="formulario-auth__grupo">
-        <%= f.label :nome, "Nome", class: "formulario-auth__label" %>
-        <%= f.text_field :nome,
-                         class: "formulario-auth__input",
-                         placeholder: "Digite o nome da categoria" %>
-      </div>
-
-      <div class="formulario-auth__acoes">
-        <%= f.submit "Atualizar", class: "botao botao--primario botao--grande" %>
-        <%= link_to "Cancelar", categorias_path, class: "botao botao--secundario botao--grande" %>
-      </div>
-    <% end %>
+<div class="pagina-categorias">
+  <div class="pagina-categorias__container">
+    <%= render "form", categoria: @categoria %>
   </div>
 </div>

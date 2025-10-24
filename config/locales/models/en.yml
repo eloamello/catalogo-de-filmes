@@ -1,0 +1,16 @@
+en:
+  activerecord:
+    models:
+      usuario: "User"
+    attributes:
+      usuario:
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        nome: "Name"
+    errors:
+      messages:
+        taken: "has already been taken"
+        blank: "can't be blank"
+        too_short: "is too short (minimum is %{count} characters)"
+        confirmation: "doesn't match the password"

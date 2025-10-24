@@ -1,5 +1,2 @@
-<p>Welcome <%= @email %>!</p>
-
-<p>You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= t('usuarios.mailer.confirmation_instructions.greeting', nome: @resource.nome) %></p>
+<p><%= t('usuarios.mailer.confirmation_instructions.message_html', confirmation_link: link_to('Confirmar minha conta', confirmation_url(@resource, confirmation_token: @token))) %></p>

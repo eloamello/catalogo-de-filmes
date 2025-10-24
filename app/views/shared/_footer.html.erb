@@ -6,28 +6,28 @@
         <span>Catálogo de Filmes</span>
       </div>
       <p class="rodape__texto">
-        Seu catálogo pessoal de filmes
+        <%= t(".presentation_phrase") %>
       </p>
     </div>
 
     <div class="rodape__links">
       <div class="rodape__coluna">
-        <h4>Navegação</h4>
+        <h4><%= t("navigation") %></h4>
         <ul>
-          <li><%= link_to "Filmes", filmes_path %></li>
-          <li><%= link_to "Categorias", categorias_path %></li>
+          <li><%= link_to t("movies"), filmes_path %></li>
+          <li><%= link_to t("categories"), categorias_path %></li>
         </ul>
       </div>
 
       <div class="rodape__coluna">
-        <h4>Conta</h4>
+        <h4><%= t("account") %></h4>
         <ul>
           <% if usuario_signed_in? %>
-            <li><%= link_to "Perfil", edit_usuario_registration_path %></li>
-            <li><%= link_to "Sair", destroy_usuario_session_path, data: { turbo_method: :delete } %></li>
+            <li><%= link_to t("perfil"), edit_usuario_registration_path %></li>
+            <li><%= link_to t("sign_out"), destroy_usuario_session_path, data: { turbo_method: :delete } %></li>
           <% else %>
-            <li><%= link_to "Entrar", new_usuario_session_path %></li>
-            <li><%= link_to "Registrar", new_usuario_registration_path %></li>
+            <li><%= link_to t("sign_in"), new_usuario_session_path %></li>
+            <li><%= link_to t("sign_up"), new_usuario_registration_path %></li>
           <% end %>
         </ul>
       </div>
@@ -35,6 +35,6 @@
   </div>
 
   <div class="rodape__copy">
-    <p><%= Time.current.year %> Desenvolvido por Eloá Mello.</p>
+    <p><%= Time.current.year %> <%= t(".developed_by", developer_name: "Eloá Mello") %></p>
   </div>
 </footer>
