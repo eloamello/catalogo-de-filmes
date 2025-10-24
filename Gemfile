@@ -52,7 +52,7 @@ gem "image_processing", "~> 1.14"
 
 # https://github.com/rails/rails/issues/54374
 gem "aws-sdk-s3", "1.170", require: false
-gem "aws-sdk-core", "3.211"
+gem "aws-sdk-core", "3.235.0"
 gem "sidekiq", "~> 8.0"
 
 gem "csv", "~> 3.3"
