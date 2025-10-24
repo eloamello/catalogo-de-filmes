@@ -51,7 +51,7 @@ gem "will_paginate", "~> 4.0"
 gem "image_processing", "~> 1.14"
 
 # https://github.com/rails/rails/issues/54374
-gem "aws-sdk-s3", "1.170", require: false
+gem "aws-sdk-s3", "1.177.0", require: false
 gem "aws-sdk-core", "3.211"
 gem "sidekiq", "~> 8.0"
 
