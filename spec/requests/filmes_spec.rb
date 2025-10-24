@@ -129,4 +129,58 @@ RSpec.describe "Filmes", type: :request do
       expect(response).to have_http_status(:found)
     end
   end
+
+  describe "POST /filmes/importar" do
+    let(:usuario) { create(:usuario) }
+
+    before { sign_in usuario }
+
+    it "inicia a importação com arquivo enviado" do
+      arquivo = fixture_file_upload(Rails.root.join("spec/fixtures/filmes.csv"), "text/csv")
+
+      expect {
+        post importar_filmes_path, params: { arquivo: arquivo }
+      }.to change { ImportacaoFilme.count }.by(1)
+
+      expect(response).to redirect_to(importacao_filmes_path)
+      expect(flash[:notice]).to eq("Importação iniciada!")
+    end
+
+    it "retorna alerta quando não envia arquivo" do
+      post importar_filmes_path
+      expect(response).to redirect_to(filmes_path)
+      expect(flash[:alert]).to eq("Nenhum arquivo enviado.")
+    end
+  end
+
+  describe "POST /filmes/buscar_por_ia" do
+    let(:usuario) { create(:usuario) }
+
+    before { sign_in usuario }
+
+    it "renderiza o partial com dados retornados da IA" do
+      fake_dados = {
+        titulo: "Filme IA",
+        sinopse: "Sinopse gerada",
+        ano: 2023,
+        duracao: 120,
+        diretor: "Diretor IA"
+      }
+      allow_any_instance_of(FilmeIaService).to receive(:buscar_dados).and_return(fake_dados)
+
+      post buscar_por_ia_filmes_path, params: { titulo: "Algum Filme" }
+
+      expect(response.content_type).to eq("text/vnd.turbo-stream.html; charset=utf-8")
+      expect(response.body).to include("Filme IA")
+    end
+
+    it "renderiza o partial vazio quando serviço IA retorna nil" do
+      allow_any_instance_of(FilmeIaService).to receive(:buscar_dados).and_return(nil)
+
+      post buscar_por_ia_filmes_path, params: { titulo: "Filme Inexistente" }
+
+      expect(response.body).to include("form_filme") # o id do form atualizado
+    end
+  end
+
 end
