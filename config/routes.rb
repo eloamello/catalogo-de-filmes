@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root "filmes#index"
 
   resources :filmes do
-    resources :comentarios, only: [ :create, :destroy ]
+    resources :comentarios, only: [ :create ]
 
     collection do
       post :importar

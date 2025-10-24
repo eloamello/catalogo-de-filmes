@@ -4,8 +4,4 @@ class ImportacaoFilmesController < ApplicationController
   def index
     @importacoes = current_usuario.importacao_filmes.order(created_at: :desc)
   end
-
-  def show
-    @importacao = current_usuario.importacao_filmes.find(params[:id])
-  end
 end
