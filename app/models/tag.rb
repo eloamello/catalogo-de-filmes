@@ -1,5 +1,5 @@
 class Tag < ApplicationRecord
-  belongs_to :filme
+  has_and_belongs_to_many :filmes
 
   validates :nome, presence: true
 end

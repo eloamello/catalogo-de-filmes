@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_22_143024) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_24_005234) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -76,6 +76,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_22_143024) do
     t.datetime "updated_at", null: false
     t.bigint "usuario_id", null: false
     t.index ["usuario_id"], name: "index_filmes_on_usuario_id"
+  end
+
+  create_table "filmes_tags", id: false, force: :cascade do |t|
+    t.bigint "filme_id", null: false
+    t.bigint "tag_id", null: false
+    t.index ["filme_id", "tag_id"], name: "index_filmes_tags_on_filme_id_and_tag_id"
+    t.index ["tag_id", "filme_id"], name: "index_filmes_tags_on_tag_id_and_filme_id"
   end
 
   create_table "importacao_filmes", force: :cascade do |t|
