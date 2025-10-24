@@ -47,24 +47,8 @@ class FilmesController < ApplicationController
   end
 
   def destroy
-    @filme.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to filmes_path, notice: "Filme was successfully destroyed.", status: :see_other }
-    end
-  end
-
-  def importar
-    arquivo = params[:arquivo]
-    return redirect_to filmes_path, alert: "Nenhum arquivo enviado." if arquivo.nil?
-
-    @importacao_filme = current_usuario.importacao_filmes.build(arquivo: arquivo)
-    if @importacao_filme.save
-      ImportarFilmesJob.perform_async(@importacao_filme.id)
-      redirect_to importacao_filmes_path, notice: "Importação iniciada!"
-    else
-      redirect_to filmes_path, alert: @importacao_filme.errors.full_messages.join(", ")
-    end
+    @filme.destroy
+    redirect_to filmes_url, notice: t(".success")
   end
 
   def buscar_por_ia
@@ -83,7 +67,7 @@ class FilmesController < ApplicationController
 
   private
     def authorize_usuario!
-      redirect_to filmes_path, alert: "Você não pode alterar este filme." unless @filme.usuario == current_usuario
+      redirect_to filmes_path unless @filme.usuario == current_usuario
     end
 
     def set_filme

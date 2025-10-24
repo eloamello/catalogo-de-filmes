@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     resources :comentarios, only: [ :create ]
 
     collection do
-      post :importar
       post :buscar_por_ia
     end
   end

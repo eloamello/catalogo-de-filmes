@@ -14,7 +14,7 @@
           Categorias e tags podem ser adicionadas após a importação.
         </p>
 
-        <%= form_with url: importar_filmes_path, local: true, html: { multipart: true, class: "form-importar-filmes" } do |f| %>
+        <%= form_with url: importacao_filmes_path, local: true, html: { multipart: true, class: "form-importar-filmes" } do |f| %>
           <div class="mb-3">
             <%= f.label :arquivo, "Escolha o CSV", class: "form-label" %>
             <%= f.file_field :arquivo, class: "form-control" , accept: ".csv" %>
