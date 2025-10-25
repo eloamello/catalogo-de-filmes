@@ -97,8 +97,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_24_005234) do
     t.string "nome"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "filme_id", null: false
-    t.index ["filme_id"], name: "index_tags_on_filme_id"
   end
 
   create_table "usuarios", force: :cascade do |t|
@@ -121,5 +119,4 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_24_005234) do
   add_foreign_key "comentarios", "usuarios"
   add_foreign_key "filmes", "usuarios"
   add_foreign_key "importacao_filmes", "usuarios"
-  add_foreign_key "tags", "filmes"
 end
