@@ -6,7 +6,7 @@ class FilmesController < ApplicationController
   def index
     @q = Filme.ransack(params[:q])
     @filmes = @q.result(distinct: true)
-                .order(ano: :desc, titulo: :asc)
+                .order(created_at: :desc)
                 .paginate(page: params[:page], per_page: 6)
 
     @categorias = Categoria.joins(:filmes).distinct.select(:id, :nome).order(:nome)
