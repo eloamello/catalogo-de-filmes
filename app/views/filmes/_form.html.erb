@@ -1,90 +1,88 @@
-<div class="formulario__container" data-controller="ia confirmacao-excluir">
-  <%= form_with(model: filme, id: "form_filme") do |form| %>
-    <% if filme.errors.any? %>
-      <div class="alert alert-danger">
-        <h4><%= pluralize(filme.errors.count, "erro") %> proibiu este filme de ser salvo:</h4>
-        <ul>
-          <% filme.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <div class="formulario__grupo">
-      <%= form.label :poster, t("poster"), class: "formulario__label" %>
-      <%= form.file_field :poster, class: "formulario__input" %>
-    </div>
-
-    <div class="formulario__grupo">
-      <div class="d-flex flex-column flex-md-row gap-2 align-items-start align-items-md-end">
-        <div class="flex-fill">
-          <%= form.label :titulo, t("title"), class: "formulario__label" %>
-          <%= form.text_field :titulo, class: "formulario__input" %>
-        </div>
-        <div>
-          <%= button_tag t(".search_using_ai") + "✧₊⁺",
-                         type: "button",
-                         class: "botao botao--sucesso mt-2 mt-md-0",
-                         data: {
-                           action: "click->ia#buscar",
-                           error_search_by_ai: t(".error_search_by_ai")
-                         } %>
-        </div>
-      </div>
-    </div>
-
-    <div class="formulario__grupo">
-      <%= form.label :sinopse, t("synopsis"), class: "formulario__label" %>
-      <%= form.text_area :sinopse, class: "formulario__input", rows: 5 %>
-    </div>
-
-    <div class="formulario__grupo">
-      <%= form.label :ano, t("year"), class: "formulario__label" %>
-      <%= form.number_field :ano, class: "formulario__input" %>
-    </div>
-
-    <div class="formulario__grupo">
-      <%= form.label :duracao, t("duration"), class: "formulario__label" %>
-      <%= form.number_field :duracao, class: "formulario__input" %>
-    </div>
-
-    <div class="formulario__grupo">
-      <%= form.label :diretor, t("director"), class: "formulario__label" %>
-      <%= form.text_field :diretor, class: "formulario__input" %>
-    </div>
-
-    <div class="formulario__grupo">
-      <%= form.label :categoria_ids, t("categories"), class: "formulario__label" %>
-      <%= form.select :categoria_ids,
-                      options_from_collection_for_select(Categoria.all, :id, :nome, filme.categoria_ids),
-                      {},
-                      { multiple: true, class: "form-select tom-select" } %>
-    </div>
-
-    <div class="formulario__grupo">
-      <%= form.label :tags_texto, t("tags"), class: "formulario__label" %>
-      <%= form.text_field :tags_texto,
-                          class: "formulario__input",
-                          placeholder: t(".placeholder_tags") %>
-    </div>
-
-    <div class="formulario__acoes">
-      <%= form.submit t("save"), class: "botao botao--primario" %>
-      <% unless filme.new_record? %>
-        <%= button_tag t("delete"),
-                       type: "button",
-                       class: "botao botao--perigo botao--pequeno",
-                       data: {
-                         action: "click->confirmacao-excluir#ask",
-                         url: filme_path(filme),
-                         i18n_title: t(".confirm_delete.title"),
-                         i18n_text: t(".confirm_delete.text", movie_title: filme.titulo),
-                         i18n_confirm: t(".confirm_delete.confirm"),
-                         i18n_cancel: t(".confirm_delete.cancel")
-                       } %>
-      <% end %>
-      <%= link_to t("back"), filmes_path, class: "botao botao--secundario" %>
+<%= form_with(model: filme, id: "form_filme") do |form| %>
+  <% if filme.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(filme.errors.count, "erro") %> proibiu este filme de ser salvo:</h4>
+      <ul>
+        <% filme.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
     </div>
   <% end %>
-</div>
+
+  <div class="formulario__grupo">
+    <%= form.label :poster, t("poster"), class: "formulario__label" %>
+    <%= form.file_field :poster, class: "formulario__input" %>
+  </div>
+
+  <div class="formulario__grupo">
+    <div class="d-flex flex-column flex-md-row gap-2 align-items-start align-items-md-end">
+      <div class="flex-fill">
+        <%= form.label :titulo, t("title"), class: "formulario__label" %>
+        <%= form.text_field :titulo, class: "formulario__input" %>
+      </div>
+      <div>
+        <%= button_tag t(".search_using_ai") + "✧₊⁺",
+                       type: "button",
+                       class: "botao botao--sucesso mt-2 mt-md-0",
+                       data: {
+                         action: "click->ia#buscar",
+                         error_search_by_ai: t(".error_search_by_ai")
+                       } %>
+      </div>
+    </div>
+  </div>
+
+  <div class="formulario__grupo">
+    <%= form.label :sinopse, t("synopsis"), class: "formulario__label" %>
+    <%= form.text_area :sinopse, class: "formulario__input", rows: 5 %>
+  </div>
+
+  <div class="formulario__grupo">
+    <%= form.label :ano, t("year"), class: "formulario__label" %>
+    <%= form.number_field :ano, class: "formulario__input" %>
+  </div>
+
+  <div class="formulario__grupo">
+    <%= form.label :duracao, t("duration"), class: "formulario__label" %>
+    <%= form.number_field :duracao, class: "formulario__input" %>
+  </div>
+
+  <div class="formulario__grupo">
+    <%= form.label :diretor, t("director"), class: "formulario__label" %>
+    <%= form.text_field :diretor, class: "formulario__input" %>
+  </div>
+
+  <div class="formulario__grupo">
+    <%= form.label :categoria_ids, t("categories"), class: "formulario__label" %>
+    <%= form.select :categoria_ids,
+                    options_from_collection_for_select(Categoria.all, :id, :nome, filme.categoria_ids),
+                    {},
+                    { multiple: true, class: "form-select tom-select" } %>
+  </div>
+
+  <div class="formulario__grupo">
+    <%= form.label :tags_texto, t("tags"), class: "formulario__label" %>
+    <%= form.text_field :tags_texto,
+                        class: "formulario__input",
+                        placeholder: t(".placeholder_tags") %>
+  </div>
+
+  <div class="formulario__acoes">
+    <%= form.submit t("save"), class: "botao botao--primario" %>
+    <% unless filme.new_record? %>
+      <%= button_tag t("delete"),
+                     type: "button",
+                     class: "botao botao--perigo botao--pequeno",
+                     data: {
+                       action: "click->confirmacao-excluir#ask",
+                       url: filme_path(filme),
+                       i18n_title: t(".confirm_delete.title"),
+                       i18n_text: t(".confirm_delete.text", movie_title: filme.titulo),
+                       i18n_confirm: t(".confirm_delete.confirm"),
+                       i18n_cancel: t(".confirm_delete.cancel")
+                     } %>
+    <% end %>
+    <%= link_to t("back"), filmes_path, class: "botao botao--secundario" %>
+  </div>
+<% end %>

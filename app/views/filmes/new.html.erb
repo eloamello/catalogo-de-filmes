@@ -9,7 +9,9 @@
 
   <br>
 
-  <%= render "form", filme: @filme %>
+  <div id="form_container" class="formulario__container" data-controller="ia confirmacao-excluir">
+    <%= render 'form', filme: @filme %>
+  </div>
 
   <%= render "modal_importar_csv" %>
 </div>
