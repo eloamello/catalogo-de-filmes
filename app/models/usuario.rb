@@ -1,5 +1,5 @@
 class Usuario < ApplicationRecord
-  enum :funcao, { usuario: 0, administrador: 1}, default: :usuario
+  enum :funcao, { usuario: 0, administrador: 1 }, default: :usuario
 
   has_many :filmes, dependent: :nullify
   has_many :comentarios, dependent: :destroy
