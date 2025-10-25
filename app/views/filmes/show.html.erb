@@ -12,7 +12,7 @@
     </div>
 
     <div class="col-md-8">
-      <h1 class="mb-2"><%= @filme.titulo %> (<%= @filme.ano %>)</h1>
+      <h1 class="mb-2"><%= @filme.titulo %> <span class="small-text">(<%= @filme.ano %>)</span> </h1>
       <p class="mb-1"><%= t("director") %>: <%= @filme.diretor %></p>
       <p class="mb-1"><%= t("duration") %>: <%= @filme.duracao %> min</p>
       <p class="mb-3"><%= @filme.sinopse %></p>
@@ -55,7 +55,7 @@
         <%= form.text_area :conteudo, class: "formulario__input", rows: 3, placeholder: t(".placeholder_comment_content") %>
       </div>
 
-      <%= form.submit "Postar comentário", class: "botao botao--primario" %>
+      <%= form.submit t(".post_comment"), class: "botao botao--primario" %>
     <% end %>
 
     <h4 class="mb-3"><%= t("comments") %> (<%= @filme.comentarios.count %>)</h4>

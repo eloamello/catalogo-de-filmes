@@ -88,6 +88,7 @@ en:
       placeholder_comment_name: "Enter your name"
       placeholder_comment_content: "Write your comment here..."
       said: "said"
+      post_comment: "Post Comment"
 
   importacao_filmes:
     index:

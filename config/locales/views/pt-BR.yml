@@ -93,6 +93,7 @@ pt-BR:
       placeholder_comment_name: "Digite seu nome"
       placeholder_comment_content: "Escreva seu comentário aqui..."
       said: "disse"
+      post_comment: "Postar Comentário"
 
   importacao_filmes:
     index:
