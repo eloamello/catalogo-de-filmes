@@ -46,13 +46,13 @@
       <% unless usuario_signed_in? %>
         <div class="formulario__grupo mb-3">
           <%= form.label :nome_visitante, t("name"), class: "formulario__label" %>
-          <%= form.text_field :nome_visitante, class: "formulario__input", placeholder: t(".placeholder_comment_name") %>
+          <%= form.text_field :nome_visitante, class: "formulario__input", placeholder: t(".placeholder_comment_name"), required: true %>
         </div>
       <% end %>
 
       <div class="formulario__grupo mb-3">
         <%= form.label :conteudo, t("comment"), class: "formulario__label" %>
-        <%= form.text_area :conteudo, class: "formulario__input", rows: 3, placeholder: t(".placeholder_comment_content") %>
+        <%= form.text_area :conteudo, class: "formulario__input", rows: 3, placeholder: t(".placeholder_comment_content"), required: true %>
       </div>
 
       <%= form.submit t(".post_comment"), class: "botao botao--primario" %>
