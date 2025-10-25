@@ -5,7 +5,7 @@
   <%= link_to t("back"), filmes_path, class: "botao botao--secundario" %>
 </div>
 
-<div class="tabela--resposive">
+<div class="tabela--resposive" data-controller="confirmacao-excluir">
   <table class="tabela">
     <thead>
     <tr>
@@ -19,7 +19,17 @@
         <td><%= categoria.nome %></td>
         <td class="tabela__acoes">
           <%= link_to t("edit"), edit_categoria_path(categoria), class: "botao botao--secundario botao--pequeno" %>
-          <%= button_to t("delete"), categoria_path(categoria), method: :delete, data: { confirm: t("sure") }, class: "botao botao--perigo botao--pequeno" %>
+          <%= button_tag t("delete"),
+                         type: "button",
+                         class: "botao botao--perigo botao--pequeno",
+                         data: {
+                           action: "click->confirmacao-excluir#ask",
+                           url: categoria_path(categoria),
+                           i18n_title: t(".confirm_delete.title"),
+                           i18n_text: t(".confirm_delete.text", category_name: categoria.nome),
+                           i18n_confirm: t(".confirm_delete.confirm"),
+                           i18n_cancel: t(".confirm_delete.cancel")
+                         } %>
         </td>
       </tr>
     <% end %>

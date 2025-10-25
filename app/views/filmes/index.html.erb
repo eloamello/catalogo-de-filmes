@@ -1,9 +1,11 @@
 <% content_for :title, t(".title") %>
 
 <div class="filmes-page">
-  <div class="mb-3 d-flex gap-2">
-    <%= link_to t(".new_movie_button"), new_filme_path, class: "botao botao--sucesso" %>
-  </div>
+  <% if usuario_signed_in? %>
+    <div class="mb-3 d-flex gap-2">
+      <%= link_to t(".new_movie_button"), new_filme_path, class: "botao botao--sucesso" %>
+    </div>
+  <% end %>
 
   <div class="busca mb-4">
     <%= search_form_for @q, url: filmes_path, method: :get, local: true, class: "row g-2" do |f| %>

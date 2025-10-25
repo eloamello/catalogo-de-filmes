@@ -6,7 +6,7 @@ class Filme < ApplicationRecord
   belongs_to :usuario
 
   validates :sinopse, :duracao, :diretor, presence: true
-  validates :titulo, presence: true, uniqueness: { scope: :year, case_sensitive: false }
+  validates :titulo, presence: true, uniqueness: { scope: :ano, case_sensitive: false }
   validates :ano, presence: true, numericality: {
     only_integer: true,
     greater_than: 1878,

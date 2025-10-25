@@ -66,8 +66,21 @@
                           placeholder: t(".placeholder_tags") %>
     </div>
 
-    <div class="formulario__acoes">
+    <div class="formulario__acoes" data-controller="confirmacao-excluir">
       <%= form.submit t("save"), class: "botao botao--primario" %>
+      <% unless filme.new_record? %>
+        <%= button_tag t("delete"),
+                       type: "button",
+                       class: "botao botao--perigo botao--pequeno",
+                       data: {
+                         action: "click->confirmacao-excluir#ask",
+                         url: filme_path(filme),
+                         i18n_title: t(".confirm_delete.title"),
+                         i18n_text: t(".confirm_delete.text", movie_title: filme.titulo),
+                         i18n_confirm: t(".confirm_delete.confirm"),
+                         i18n_cancel: t(".confirm_delete.cancel")
+                       } %>
+      <% end %>
       <%= link_to t("back"), filmes_path, class: "botao botao--secundario" %>
     </div>
   <% end %>

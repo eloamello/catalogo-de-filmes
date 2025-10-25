@@ -38,6 +38,11 @@ pt-BR:
   categorias:
     index:
       title: "Categorias"
+      confirm_delete:
+        title: "Confirmar exclusão"
+        text: "Tem certeza que deseja excluir a categoria \"%{category_name}\"? Esta ação não pode ser desfeita."
+        confirm: "Sim"
+        cancel: "Não"
     form:
       placeholder_name: "Ex: Ação, Comédia, Drama"
     new:
@@ -52,6 +57,11 @@ pt-BR:
     form:
         placeholder_tags: "top10 oscar premiado (separados por espaço)"
         search_using_ai: "Buscar por IA"
+        confirm_delete:
+            title: "Confirmar exclusão"
+            text: "Tem certeza que deseja excluir o filme \"%{movie_title}\"? Esta ação não pode ser desfeita."
+            confirm: "Sim"
+            cancel: "Não"
     modal_importar_csv:
       import_movies: "Importar Filmes"
       import_instructions: |

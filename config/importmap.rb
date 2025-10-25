@@ -11,3 +11,4 @@ pin "@orchidjs/unicode-variants", to: "@orchidjs--unicode-variants.js" # @1.1.2
 pin "bootstrap", preload: true
 pin "@popperjs/core", to: "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/+esm", preload: true
 pin "toastify-js" # @1.12.0
+pin "sweetalert2" # @11.26.3
