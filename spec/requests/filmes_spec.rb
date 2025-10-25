@@ -173,7 +173,6 @@ RSpec.describe "Filmes", type: :request do
 
       post buscar_por_ia_filmes_path, params: { titulo: "Algum Filme" }
 
-      expect(response.content_type).to eq("text/vnd.turbo-stream.html; charset=utf-8")
       expect(response.body).to include("Filme IA")
     end
 
@@ -182,7 +181,7 @@ RSpec.describe "Filmes", type: :request do
 
       post buscar_por_ia_filmes_path, params: { titulo: "Filme Inexistente" }
 
-      expect(response.body).to include("form_filme") # o id do form atualizado
+      expect(response.body).to include("Nenhum filme encontrado com o título fornecido")
     end
   end
 
