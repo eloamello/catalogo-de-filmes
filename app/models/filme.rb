@@ -13,7 +13,8 @@ class Filme < ApplicationRecord
     less_than_or_equal_to: Date.current.year
   }
 
-  scope :por_categorias, ->(categoria_ids) {
+  scope :por_categorias, ->(*categoria_ids) {
+    categoria_ids = categoria_ids.flatten.compact.reject(&:blank?)
     return all if categoria_ids.blank?
     joins(:categorias).where(categorias: { id: categoria_ids }).distinct
   }

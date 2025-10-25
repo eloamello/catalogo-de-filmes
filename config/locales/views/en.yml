@@ -50,8 +50,14 @@ en:
       direction: "Direction"
       details: "Details"
     form:
+      error_search_by_ai: "An error occurred while searching for the movie using AI."
       placeholder_tags: "top10 oscar winner (separated by space)"
       search_using_ai: "Search with AI"
+      confirm_delete:
+        title: "Confirm Deletion"
+        text: "Are you sure you want to delete the movie \"%{movie_title}\"? This action cannot be undone."
+        confirm: "Yes"
+        cancel: "No"
     modal_importar_csv:
       import_movies: "Import Movies"
       import_instructions: |
@@ -69,6 +75,11 @@ en:
       search_by_title: "Search by title"
       search_by_director: "Search by director"
       search_by_year: "Search by year"
+      no_categories_available: "No categories available"
+      no_directors_available: "No directors available"
+      no_years_available: "No years available"
+      no_movies_found: "No movies found"
+      clear_filters: "Clear filters"
     new:
       title: "New Movie"
       import_csv: "Import CSV"

@@ -19,4 +19,11 @@ body {
 
 .conteudo-principal {
   flex: 1;
+  padding: 2rem 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem 1rem;
+  }
 }

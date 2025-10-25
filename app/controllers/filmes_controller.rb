@@ -52,13 +52,16 @@ class FilmesController < ApplicationController
 
     dados = FilmeIaService.new(titulo).buscar_dados
 
-    @filme = dados ? Filme.new(dados) : Filme.new
-
-    render turbo_stream: turbo_stream.update(
-      "form_filme",
-      partial: "filmes/form",
-      locals: { filme: @filme }
-    )
+    if dados.blank?
+      render json: { alerta: t(".not_found") }, status: :not_found
+    else
+      @filme = Filme.new(dados)
+      render turbo_stream: turbo_stream.update(
+        "form_filme",
+        partial: "filmes/form",
+        locals: { filme: @filme }
+      )
+    end
   end
 
   private

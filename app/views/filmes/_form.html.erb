@@ -1,4 +1,4 @@
-<div class="formulario__container" data-controller="ia">
+<div class="formulario__container" data-controller="ia confirmacao-excluir">
   <%= form_with(model: filme, id: "form_filme") do |form| %>
     <% if filme.errors.any? %>
       <div class="alert alert-danger">
@@ -26,7 +26,10 @@
           <%= button_tag t(".search_using_ai") + "✧₊⁺",
                          type: "button",
                          class: "botao botao--sucesso mt-2 mt-md-0",
-                         data: { action: "click->ia#buscar" } %>
+                         data: {
+                           action: "click->ia#buscar",
+                           error_search_by_ai: t(".error_search_by_ai")
+                         } %>
         </div>
       </div>
     </div>
@@ -66,7 +69,7 @@
                           placeholder: t(".placeholder_tags") %>
     </div>
 
-    <div class="formulario__acoes" data-controller="confirmacao-excluir">
+    <div class="formulario__acoes">
       <%= form.submit t("save"), class: "botao botao--primario" %>
       <% unless filme.new_record? %>
         <%= button_tag t("delete"),

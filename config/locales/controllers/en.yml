@@ -19,8 +19,18 @@ en:
     update:
       success: "Movie updated successfully."
       failure: "Failed to update movie."
+      unauthorized: "You cannot edit this movie."
     destroy:
       success: "Movie deleted successfully."
+      unauthorized: "You cannot delete this movie."
+    buscar_por_ia:
+      not_found: |
+        No movie found with the provided title.
+        Please check the title and try again.
+        If the movie is part of a franchise where 
+        all movies share the same name (e.g., "The Lord of the Rings"), 
+        please specify the subtitle or release year
+        (e.g., "The Lord of the Rings: The Fellowship of the Ring" or "The Lord of the Rings 2001").
   importacao_filmes:
     create:
       success: "Movie import started successfully."

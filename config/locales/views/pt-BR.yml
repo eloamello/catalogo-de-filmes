@@ -55,6 +55,7 @@ pt-BR:
       direction: "Direção"
       details: "Detalhes"
     form:
+        error_search_by_ai: "Ocorreu um erro ao buscar o filme usando IA."
         placeholder_tags: "top10 oscar premiado (separados por espaço)"
         search_using_ai: "Buscar por IA"
         confirm_delete:
@@ -79,6 +80,11 @@ pt-BR:
       search_by_title: "Buscar por título"
       search_by_director: "Buscar por diretor"
       search_by_year: "Buscar por ano"
+      no_categories_available: "Nenhuma categoria disponível"
+      no_directors_available: "Nenhum diretor disponível"
+      no_years_available: "Nenhum ano disponível"
+      no_movies_found: "Nenhum filme encontrado"
+      clear_filters: "Limpar filtros"
     new:
       title: "Novo Filme"
       import_csv: "Importar CSV"

@@ -1,21 +1,18 @@
-.navbar-custom {
+.navbar {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem;
   background: white;
   border-bottom: 1px solid $cor-borda;
   position: sticky;
   top: 0;
   z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  &__container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 1rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-  }
-
-  &__logo {
+  .navbar-brand {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -35,212 +32,107 @@
     }
   }
 
-  &__menu {
-    display: flex;
-    gap: 2rem;
-
-    @media (max-width: 768px) {
-      display: none;
-    }
-  }
-
-  &__link {
-    color: $texto-medio;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s ease;
-    position: relative;
-
-    &:hover {
-      color: $cor-primaria;
-    }
-
-    &.active {
-      color: $cor-primaria;
-
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: -1.5rem;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: $cor-primaria;
-      }
-    }
-  }
-
-  &__acoes {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-
-    @media (max-width: 768px) {
-      display: none;
-    }
-  }
-
-  &__usuario {
-    position: relative;
-  }
-
-  &__usuario-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: transparent;
-    border: 1px solid $cor-borda;
-    border-radius: $raio-medio;
-    color: $texto-escuro;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-
-    &:hover {
-      background: $fundo-claro;
-      border-color: $cor-primaria;
-    }
-
-    i:first-child {
-      font-size: 1.25rem;
-      color: $cor-primaria;
-    }
-
-    i:last-child {
-      font-size: 0.75rem;
-    }
-  }
-
-  &__toggle {
-    display: none;
-    background: transparent;
-    border: none;
-    font-size: 1.5rem;
-    color: $texto-escuro;
-    cursor: pointer;
-
-    @media (max-width: 768px) {
-      display: block;
-    }
-  }
-
-  &__mobile {
-    border-top: 1px solid $cor-borda;
-    padding: 1rem 1.5rem;
-
-    @media (min-width: 769px) {
-      display: none !important;
-    }
-  }
-
-  &__mobile-link {
-    display: block;
-    padding: 0.75rem 0;
-    color: $texto-medio;
-    text-decoration: none;
-    font-weight: 500;
-    border-bottom: 1px solid $cor-borda;
-
-    &:last-of-type {
-      border-bottom: none;
-    }
-
-    &:hover {
-      color: $cor-primaria;
-    }
-  }
-
-  &__mobile-acoes {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid $cor-borda;
-  }
-
-  .dropdown {
-    position: relative;
-
-    &:hover .dropdown-menu {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .dropdown-toggle {
-      background: transparent;
-      border: none;
-      font-weight: 500;
+  .navbar-nav {
+    .nav-link {
       color: $texto-medio;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
+      font-weight: 500;
       transition: color 0.2s ease;
+      cursor: pointer;
 
       &:hover {
         color: $cor-primaria;
       }
 
-      &::after {
-        content: "\25BC";
-        font-size: 0.6rem;
-        margin-left: 0.25rem;
-        transition: transform 0.2s ease;
+      &.active {
+        color: $cor-primaria;
       }
     }
 
     .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      min-width: 180px;
-      background: white;
-      border: 1px solid $cor-borda;
       border-radius: $raio-medio;
+      border: 1px solid $cor-borda;
       box-shadow: $sombra-media;
       padding: 0.5rem 0;
-      z-index: 1000;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.2s ease;
 
-      li {
-        width: 100%;
+      .dropdown-item {
+        color: $texto-escuro;
+        font-weight: 500;
+        transition: background 0.2s ease, color 0.2s ease;
 
-        a {
-          display: block;
-          padding: 0.5rem 1rem;
-          color: $texto-escuro;
-          font-weight: 500;
-          text-decoration: none;
-          transition: background 0.2s ease, color 0.2s ease;
-
-          &:hover {
-            background: $fundo-claro;
-            color: $cor-primaria;
-          }
+        &:hover {
+          background: $fundo-claro;
+          color: $cor-primaria;
         }
       }
     }
   }
-}
 
-@media (max-width: 768px) {
-  .dropdown-menu {
-    position: static;
-    transform: none;
-    opacity: 1;
-    box-shadow: none;
+  .navbar-toggler {
     border: none;
-    padding: 0;
+    font-size: 1.5rem;
+    color: $texto-escuro;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+
+    &:focus {
+      box-shadow: none;
+    }
   }
 
-  .dropdown-toggle::after {
-    content: "\25B6";
-    transform: rotate(90deg);
+  .btn {
+    font-weight: 500;
+    padding: 0.375rem 0.75rem;
+    border-radius: $raio-medio;
+
+    &.btn-primary {
+      background-color: $cor-primaria;
+      border-color: $cor-primaria;
+      color: white;
+
+      &:hover {
+        background-color: darken($cor-primaria, 5%);
+        border-color: darken($cor-primaria, 5%);
+      }
+    }
+
+    &.btn-outline-secondary {
+      background: transparent;
+      border: 1px solid $cor-borda;
+      color: $texto-escuro;
+
+      &:hover {
+        background: $fundo-claro;
+        border-color: $cor-primaria;
+        color: $cor-primaria;
+      }
+    }
+  }
+
+  .nav-link.d-flex.align-items-center {
+    gap: 0.5rem;
+
+    i {
+      font-size: 1.25rem;
+      color: $cor-primaria;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .navbar-nav {
+      .nav-link {
+        padding: 0.5rem 1rem;
+      }
+
+      .dropdown-menu {
+        border-left: 2px solid $cor-primaria;
+        box-shadow: none;
+        padding-left: 1rem;
+      }
+    }
+
+    .btn {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
   }
 }

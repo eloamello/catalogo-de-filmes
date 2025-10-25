@@ -23,6 +23,14 @@ pt-BR:
     destroy:
         success: "Filme excluído com sucesso."
         unauthorized: "Você não pode apagar este filme."
+    buscar_por_ia:
+      not_found: |
+        Nenhum filme encontrado com o título fornecido.
+        Verifique o título e tente novamente.
+        Se o filme fizer parte de uma franquia em que 
+        todos os filmes tem o mesmo nome (ex: "Senhor dos Anéis"), 
+        Especifique o subtítulo ou ano de lançamento
+        (ex: "Senhor dos Anéis: A Sociedade do Anel" ou "Senhor dos Anéis 2001").
   importacao_filmes:
     create:
         success: "Importação de filmes iniciada com sucesso."
