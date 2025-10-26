@@ -10,6 +10,7 @@ en:
         nome: "Name"
     errors:
       messages:
+        record_invalid: 'Validation of the record failed: %{errors}'
         accepted: must be accepted
         blank: can't be blank
         confirmation: doesn't match %{attribute}

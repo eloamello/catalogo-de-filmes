@@ -10,6 +10,7 @@ pt-BR:
             nome: "Nome"
     errors:
       messages:
+        record_invalid: 'A validação do registro falhou: %{errors}'
         accepted: deve ser aceito
         blank: não pode ficar em branco
         confirmation: não é igual a %{attribute}

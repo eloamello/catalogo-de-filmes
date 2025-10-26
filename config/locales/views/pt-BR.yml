@@ -220,7 +220,7 @@ pt-BR:
       see_all_movies: "Ver Todos"
       see_all_categories: "Ver Todas"
 
-  importacao_filmes_mailer:
+  importacao_filme_mailer:
     importacao_finalizada:
       saudacao: "Olá %{nome}!"
       mensagem_html: |
