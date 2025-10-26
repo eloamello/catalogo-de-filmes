@@ -225,4 +225,4 @@ pt-BR:
       saudacao: "Olá %{nome}!"
       mensagem_html: |
         A importação %{id} foi concluída com sucesso.
-        instrucoes: "Agora você já pode visualizar os filmes importados na sua conta."
+      instrucoes: "Agora você já pode visualizar os filmes importados na sua conta."

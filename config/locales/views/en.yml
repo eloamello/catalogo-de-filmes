@@ -215,9 +215,9 @@ en:
       see_all_movies: "See All"
       see_all_categories: "See All"
 
-  importacao_filmes_mailer:
+  importacao_filme_mailer:
     importacao_finalizada:
       saudacao: "Hello %{nome}!"
       mensagem_html: |
         The import %{id} has been completed successfully.
-        instructions: "You can now view the imported movies in your account."
+      instructions: "You can now view the imported movies in your account."
