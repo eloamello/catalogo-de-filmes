@@ -14,3 +14,5 @@ pt-BR:
         blank: "não pode ficar em branco"
         too_short: "é muito curto (mínimo de %{count} caracteres)"
         confirmation: "não corresponde à senha"
+        not_a_number: "não é um número"
+        greater_than: "deve ser maior que %{count}"

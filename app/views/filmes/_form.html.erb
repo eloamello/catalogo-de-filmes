@@ -19,7 +19,7 @@
     <div class="d-flex flex-column flex-md-row gap-2 align-items-start align-items-md-end">
       <div class="flex-fill">
         <%= form.label :titulo, t("title"), class: "formulario__label" %>
-        <%= form.text_field :titulo, class: "formulario__input" %>
+        <%= form.text_field :titulo, class: "formulario__input", required: true %>
       </div>
       <div>
         <%= button_tag t(".search_using_ai") + "✧₊⁺",
@@ -35,22 +35,22 @@
 
   <div class="formulario__grupo">
     <%= form.label :sinopse, t("synopsis"), class: "formulario__label" %>
-    <%= form.text_area :sinopse, class: "formulario__input", rows: 5 %>
+    <%= form.text_area :sinopse, class: "formulario__input", rows: 5, required: true %>
   </div>
 
   <div class="formulario__grupo">
     <%= form.label :ano, t("year"), class: "formulario__label" %>
-    <%= form.number_field :ano, class: "formulario__input" %>
+    <%= form.number_field :ano, class: "formulario__input", required: true  %>
   </div>
 
   <div class="formulario__grupo">
     <%= form.label :duracao, t("duration"), class: "formulario__label" %>
-    <%= form.number_field :duracao, class: "formulario__input" %>
+    <%= form.number_field :duracao, class: "formulario__input", required: true  %>
   </div>
 
   <div class="formulario__grupo">
     <%= form.label :diretor, t("director"), class: "formulario__label" %>
-    <%= form.text_field :diretor, class: "formulario__input" %>
+    <%= form.text_field :diretor, class: "formulario__input", required: true  %>
   </div>
 
   <div class="formulario__grupo">
