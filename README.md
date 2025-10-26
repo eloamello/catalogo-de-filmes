@@ -89,6 +89,7 @@ O **Catálogo de Filmes** é uma aplicação web completa desenvolvida em Ruby o
 - Visualização detalhada de filmes
 - Upload de poster para os filmes com integração com Amazon S3
 - Busca e preenchimento automático de dados por IA
+- Importação em massa via CSV
 
 ### Organização
 - Sistema de tags para os filmes
@@ -219,6 +220,14 @@ rspec spec
 - Escreva seu comentário e clique em "Enviar"
 - Usuários não autenticados terão que informar um nome de exibição
 
+### Importar Filmes via CSV
+- Acesse a página de Novo Filme
+- Clique em "Importar CSV"
+- Importe um CSV no formato abaixo:
+```csv
+titulo,sinopse,ano,duracao,diretor
+```
+- Você pode encontrar um CSV de exemplo na pasta [`assets/exemplo_importacao_filmes.csv`](app/assets/exemplo_importacao_filmes.csv)
 ---
 
 ## Contato
